@@ -1,0 +1,161 @@
+:host {
+  box-sizing: border-box;
+}
+
+*:not(:host),
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+.my-content {
+  display: grid;
+  place-items: center;
+}
+
+/* Utility Classes Start */
+
+._grid-overlay_ {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'overlay';
+}
+
+._grid-overlay_ > * {
+  grid-area: overlay;
+  z-index: 0;
+}
+
+/* Utility Classes End */
+
+
+/* Border Effect */
+
+:host {
+  --border-width: 3px;
+  --horizontal-length: 100px;
+  --vertical-length: 100px;
+}
+
+.wrapper-border-effect {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper-border-effect > :first-child {
+  border-style: solid;
+  border-color: transparent;
+  border-width: var(--border-width);
+}
+
+
+
+.border-effect {
+  pointer-events: none;
+
+  position: relative;
+
+  --horizontal-angle: 90deg;
+  --horizontal-reversed-angle: 270deg;
+
+  --vertical-angle: 180deg;
+  --vertical-reversed-angle: 0deg;
+  
+  --vertical-clip-path: polygon(
+    0 0,
+    100% 0,
+    50% calc(var(--vertical-length) * 2)
+  );
+  
+  --vertical-clip-path-reversed: polygon(
+    50% calc(100% - var(--vertical-length) * 2),
+    100% 100%,
+    0% 100%
+  );
+  
+  --horizontal-clip-path: polygon(
+    0 0,
+    0 100%,
+    calc(var(--horizontal-length) * 2) 50%
+  );
+  
+  --horizontal-clip-path-reversed: polygon(
+    calc(100% - var(--horizontal-length) * 2) 50%,
+    100% 0,
+    100% 100%
+  );
+}
+
+.border-effect > .border {
+  position: absolute;
+}
+
+/* Horizontal Top */
+.border-effect > .border:nth-child(1) {
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--border-width);
+
+  background-image: linear-gradient(
+    var(--horizontal-angle),
+    #fff9,
+    transparent var(--horizontal-length)
+  );
+
+  clip-path: var(--horizontal-clip-path);
+}
+
+/* Vertical Left */
+.border-effect > .border:nth-child(2) {
+  top: var(--border-width);
+  left: 0;
+
+  width: var(--border-width);
+  height: calc(100% - var(--border-width));
+
+  background-image: linear-gradient(
+    var(--vertical-angle),
+    #fff9,
+    transparent calc(var(--vertical-length) - 2px)
+  );
+
+  clip-path: var(--vertical-clip-path);
+}
+
+/* Horizontal Bottom */
+.border-effect > .border:nth-child(3) {
+  bottom: 0;
+  right: 0;
+
+  width: 100%;
+  height: var(--border-width);
+
+  background-image: linear-gradient(
+    var(--horizontal-reversed-angle),
+    #fff9,
+    transparent var(--horizontal-length)
+  );
+
+  clip-path: var(--horizontal-clip-path-reversed);
+}
+
+/* Vertical Right */
+.border-effect > .border:nth-child(4) {
+  bottom: var(--border-width);
+  right: 0;
+
+  width: var(--border-width);
+  height: calc(100% - var(--border-width));
+
+  background-image: linear-gradient(
+    var(--vertical-reversed-angle),
+    #fff9,
+    transparent calc(var(--vertical-length) - 2px)
+  );
+
+  clip-path: var(--vertical-clip-path-reversed);
+}
