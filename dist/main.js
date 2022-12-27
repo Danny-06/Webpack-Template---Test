@@ -10,7 +10,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 
-  const css = "@charset \"UTF-8\";\r\n\r\n[data-id=\"app-content\"] {\r\n  display: grid;\r\n  grid-template-columns: 300px 1fr;\r\n  grid-template-rows: 1fr;\r\n\r\n  padding: 0;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n.aside-component {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding: 1rem;\r\n\r\n  background-color: #142434;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n.aside-component > .item {\r\n  padding-inline: 0.6rem;\r\n  padding-block: 0.6rem;\r\n\r\n  border: solid 2px #fff;\r\n  background-color: #06f;\r\n}\r\n\r\n.aside-component > .item:last-child {\r\n  margin-top: auto;\r\n}\r\n\r\n.main-component {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n\r\n  padding: 1rem;\r\n}\r\n\r\n.main-component > .title-border-wrapper {\r\n  padding-bottom: 1rem;\r\n}\r\n\r\n.title-border-wrapper {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 500px;\r\n  --vertical-length: 3rem;\r\n}\r\n\r\n.title-border-wrapper > .title {\r\n  padding-block: 1rem;\r\n  padding-inline: 0.5rem;\r\n\r\n  text-align: center;\r\n}\r\n\r\n\r\n.cards-container {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 700px;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.cards-container > .card {\r\n  flex-shrink: 1;\r\n}\r\n\r\n.card {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding-block: 0.5rem;\r\n  padding-inline: 1rem;\r\n\r\n  border-radius: 0.6rem;\r\n  background-color: #06f;\r\n}\r\n\r\n.card > .title {\r\n  font-size: 1.2rem;\r\n  font-weight: bold;\r\n}\r\n"
+  const css = "@charset \"UTF-8\";\r\n\r\n[data-id=\"app-content\"] {\r\n  display: grid;\r\n  grid-template-columns: 300px 1fr;\r\n  grid-template-rows: 1fr;\r\n\r\n  padding: 0;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n.aside-component {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding: 1rem;\r\n\r\n  background-color: #142434;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n.aside-component > .item {\r\n  padding-inline: 0.6rem;\r\n  padding-block: 0.6rem;\r\n\r\n  border: solid 2px #fff;\r\n  background-color: #06f;\r\n}\r\n\r\n.aside-component > .item:last-child {\r\n  margin-top: auto;\r\n}\r\n\r\n.main-component {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n\r\n  padding: 1rem;\r\n}\r\n\r\n.main-component > .title-border-wrapper {\r\n  padding-bottom: 1rem;\r\n}\r\n\r\n.title-border-wrapper {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 500px;\r\n  --vertical-length: 3rem;\r\n}\r\n\r\n.title-border-wrapper > .title {\r\n  padding-block: 1rem;\r\n  padding-inline: 0.5rem;\r\n\r\n  text-align: center;\r\n}\r\n\r\n\r\n.cards-container {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 700px;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.cards-container > .card {\r\n  flex-shrink: 1;\r\n}\r\n\r\n.card {\r\n  max-width: 190px;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding-block: 0.5rem;\r\n  padding-inline: 1rem;\r\n\r\n  border-radius: 0.6rem;\r\n  background-color: #06f;\r\n}\r\n\r\n.card > .title {\r\n  font-size: 1.2rem;\r\n  font-weight: bold;\r\n}\r\n"
 
   const stylesheet = new CSSStyleSheet()
   stylesheet.replaceSync(css)
@@ -248,7 +248,7 @@ function buildElement(element, properties = {}, ...children) {
     (0,_helpers_js__WEBPACK_IMPORTED_MODULE_0__.setStyleProperties)(element.style, style)
   }
 
-  (0,_helpers_js__WEBPACK_IMPORTED_MODULE_0__.setChildren)(element, children.flat(Infinity))
+  (0,_helpers_js__WEBPACK_IMPORTED_MODULE_0__.setChildren)(element, children)
 
   return element
 }
@@ -461,7 +461,7 @@ function setClasses(element, classes) {
  * @param {HTMLElement[]} children 
  */
 function setChildren(element, children) {
-  element.append(...children)
+  element.append(...children.flat(Infinity))
 }
 
 
@@ -746,7 +746,7 @@ function App() {
   return _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({dataset: {id: 'app'}},
     _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({dataset: {id: 'app-content'}},
       Aside(),
-      Main()
+      Main(),
     )
   )
 }
@@ -762,14 +762,70 @@ function Main() {
     (0,_CoolBorder_index_js__WEBPACK_IMPORTED_MODULE_2__.CoolBorder)({tagName: 'h1', class: 'title-border-wrapper'},
       _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'title'}, 'Some cool title')
     ),
-    _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'cards-container'},
-      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].$map(3, () => _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'card'},
-          _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'title'}, 'Card Title'),
-          _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'content'}, 'My perfect content\n'.repeat(4))
-        )
-      ),
+    CardsContainer(),
+
+    TypeSonic(),
+  )
+}
+
+function TypeSonic() {
+  const typeEffect = TypeEffect()
+
+  const btn = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].button()
+
+  btn.addEventListener('click', event => {
+    typeEffect.initAnimation('Sonic The Hedgehog', 100)
+  })
+
+  return (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+    (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(typeEffect.component, {class: 'type-effect-component'}),
+    (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(btn,
+      {class: 'btn', style: {alignSelf: 'flex-start', backgroundColor: '#06f', padding: '1rem', borderRadius: '0.3em'}},
+      'Click Me'
     ),
   )
+}
+
+function CardsContainer() {
+  return _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'cards-container'},
+    _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].$map(3, () => _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'card'},
+        _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'title'}, 'Card Title'),
+        _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'content'}, 'My perfect content\n'.repeat(4))
+      )
+    ),
+  )
+}
+
+
+function TypeEffect() {
+  const placeholderForEmptyString = () => _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({style: {height: '1em'}})
+  const component = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]["type-effect"]({class: 'type-effect-component', style: {lineHeight: '1em'}}, placeholderForEmptyString())
+
+  let i
+  let timeoutAnimation
+
+  function anim(text, delay) {
+    component.innerText = text.slice(0, i)
+
+    if (++i > text.length) {
+      return
+    }
+
+    timeoutAnimation = setTimeout(anim, delay, ...arguments)
+  }
+
+  return {
+    component,
+    initAnimation(text = 'No Text To Type', delay = 100) {
+      clearTimeout(timeoutAnimation)
+      i = 1
+
+      component.innerHTML = ''
+      component.append(placeholderForEmptyString())
+
+      setTimeout(anim, delay, ...arguments)
+    }
+  }
 }
 
 

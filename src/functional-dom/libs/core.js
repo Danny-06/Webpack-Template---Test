@@ -14,6 +14,7 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  * @typedef ShadowDOMOptions
  * @property {ShadowRootInit} [init]
  * @property {ShadowRootMode} [mode=open]
+ * @property {CSSStyleSheet[]} [adoptedStyleSheets=[]]
  * @property {HTMLElement[]} [children]
  */
 
@@ -143,7 +144,7 @@ export default DOMMaker
  * the `properties` and the `children` to it.
  */
 export function buildElement(element, properties = {}, ...children) {
-  const {id, class: classes, dataset, attributes, style} = properties
+  const {id, class: classes, dataset, attributes, style} = properties ?? {}
 
   const tp = window.trustedTypes ? trustedTypes.createPolicy('', {createHTML: e => e, createScriptURL: e => e }) : {createHTML: e => e, createScriptURL: e => e }
 
@@ -203,11 +204,15 @@ export function buildShadowHostElement(element, properties = {}, shadowDOMOption
   if (shadowDOMOptions.mode) {
     shadowRootInit.mode = shadowDOMOptions.mode
   }
-
+  
   const shadowRoot = element.attachShadow(shadowRootInit)
-
+  
+  if (Array.isArray(shadowDOMOptions.adoptedStyleSheets)) {
+    shadowRoot.adoptedStyleSheets = shadowDOMOptions.adoptedStyleSheets
+  }
+  
   shadowRoot.append(...shadowDOMOptions.children ?? [])
-
+  
   return element
 }
 

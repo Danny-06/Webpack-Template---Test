@@ -19,11 +19,7 @@ import stylesheet from './main.css'
  * @returns {T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : HTMLElement}
  */
 export function CoolBorder(options, ...children) {
-  const {tagName = 'div'} = options
-
-  const wrapper =  _.$[tagName]()
-
-  wrapper.shadowRoot.adoptedStyleSheets = [stylesheet]
+  const {tagName = 'div'} = options ?? {}
 
   const shadowRootContent = _.div({class: 'wrapper-border-effect _grid-overlay_'}, 
     _.div({class: 'my-content'},
@@ -37,7 +33,10 @@ export function CoolBorder(options, ...children) {
     )
   )
 
-  wrapper.shadowRoot.append(shadowRootContent)
+  const wrapper = _.$[tagName](null, {
+    adoptedStyleSheets: [stylesheet],
+    children: [shadowRootContent]
+  })
 
   return $(wrapper, options, ...children)
 }
