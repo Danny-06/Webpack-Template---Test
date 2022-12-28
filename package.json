@@ -17,6 +17,11 @@
     "webpack-cli": "^4.6.0"
   },
   "devDependencies": {
+    "postcss": "^8.4.20",
+    "postcss-custom-media": "^9.0.1",
+    "postcss-loader": "^7.0.2",
+    "postcss-media-minmax": "^5.0.0",
+    "postcss-nested": "^6.0.0",
     "webpack-dev-server": "^4.11.1"
   }
 }

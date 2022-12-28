@@ -5,6 +5,10 @@
     // to take effect in JS files
     "allowJs": true,
     "target": "ESNext",
-    "checkJs": true
+
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
+    "moduleResolution": "Node"
   }
 }

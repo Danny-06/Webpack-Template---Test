@@ -42,7 +42,10 @@ export default {
       },
       {
         test: /\.css/,
-        loader: 'constructed-stylesheets-loader.cjs'
+        use: [
+          {loader: 'constructed-stylesheets-loader.cjs'},
+          {loader: 'postcss-loader'},
+        ]
       },
       {
         test: /\.html/,
