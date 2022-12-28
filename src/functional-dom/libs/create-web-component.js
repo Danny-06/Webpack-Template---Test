@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const mutationObserver = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     if (mutation.type === 'attributes') {

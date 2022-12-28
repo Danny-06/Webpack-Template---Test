@@ -9,21 +9,32 @@ class SliderInterface {
     const rule = [...stylesheet.cssRules].find(rule => rule.selectorText === '.wrapper')
 
     Object.defineProperties(this, {
-      targetComponent: {enumerable: true, value: targetComponent},
-      wrapper:         {enumerable: true, value: wrapper},
-      _currentIndex:   {writable: true,   value: 0},
-      _wrapperCSSRule: {value: rule},
+      targetComponent:           {enumerable: true, value: targetComponent},
+      wrapper:                   {enumerable: true, value: wrapper},
+      _currentIndex:             {writable: true,   value: 0},
+      _wrapperCSSRule:           {value: rule},
       _storedTransitionDuration: {writable: true, value: undefined},
-      _direction: {writable: true, value: 'horizontal'},
-      _reversed: {writable: true, value: false},
-      _cyclic: {writable: true, value: false},
-      _isTransitioning: {writable: true, value: false},
-      _currentSlottedElement: {writable: true, value: null}
+      _direction:                {writable: true, value: 'horizontal'},
+      _reversed:                 {writable: true, value: false},
+      _cyclic:                   {writable: true, value: false},
+      _isTransitioning:          {writable: true, value: false},
+      _currentSlottedElement:    {writable: true, value: null}
     })
 
     this._direction = this.targetComponent.dataset.direction ?? this._direction
 
   }
+
+  targetComponent
+  wrapper
+  _currentIndex
+  _wrapperCSSRule
+  _storedTransitionDuration
+  _direction
+  _reversed
+  _cyclic
+  _isTransitioning
+  _currentSlottedElement
 
   toggleCyclic() {
     return this.cyclic = !this.cyclic
@@ -355,7 +366,7 @@ export class SliderComponent extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this.ignoreAttributeChange) return
+    // if (this.ignoreAttributeChange) return
 
     switch (name) {
       case '':

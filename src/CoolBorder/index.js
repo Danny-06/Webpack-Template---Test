@@ -9,7 +9,7 @@ import stylesheet from './main.css'
 
 /**
  * @template T
- * @typedef {CoolBorderOptionsDef<T> & import('../functional-dom/libs/core').FunctionalDOMProperties} CoolBorderOptions
+ * @typedef {CoolBorderOptionsDef<T> & import('../functional-dom/libs/core.js').FunctionalDOMProperties} CoolBorderOptions
  */
 
 /**

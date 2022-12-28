@@ -1,9 +1,13 @@
+
 /**
  * @template T
- * @param {T extends keyof HTMLElementTagNameMap ? T : never} tagName 
- * @returns {HTMLElementTagNameMap[T]}
+ * @param {T extends keyof HTMLElementTagNameMap ? T : string} tagName 
+ * @returns {T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : HTMLElement}
  */
 export function createElement(tagName) {
+  /**
+   * @type {any}
+   */
   const element = document.createElement(tagName)
 
   return element
@@ -17,6 +21,9 @@ export function createElement(tagName) {
  * @returns {namespace extends 'http://www.w3.org/2000/svg' ? T extends keyof SVGElementTagNameMap ? SVGElementTagNameMap[T] : SVGElement : Element}
  */
 export function createElementNS(tagName, namespace) {
+  /**
+   * @type {any}
+   */
   const element = document.createElementNS(namespace, tagName)
 
   return element
@@ -38,9 +45,10 @@ export function setClasses(element, classes) {
 /**
  * 
  * @param {HTMLElement} element 
- * @param {HTMLElement[]} children 
+ * @param {import("./core.js").Children} children 
  */
 export function setChildren(element, children) {
+  // @ts-ignore
   element.append(...children.flat(Infinity))
 }
 

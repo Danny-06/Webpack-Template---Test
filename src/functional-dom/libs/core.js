@@ -1,12 +1,20 @@
 import { $map, createElement, createElementNS, setChildren, setClasses, setStyleProperties } from './helpers.js'
 
 /**
- * @typedef {(...children?: HTMLElement) => DocumentFragment} DOMMakerProxyFunc
+ * @typedef {string | number | HTMLElement | DocumentFragment} ParamNode
+ */
+
+/**
+ * @typedef {ParamNode[] | ParamNode[][]} Children
+ */
+
+/**
+ * @typedef {(...children: ParamNode[]) => DocumentFragment} DOMMakerProxyFunc
  */
 
 /**
  * @typedef {{
- *  [key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]
+ *  [key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, ...children: Children) => HTMLElementTagNameMap[key]
  * }} DOMMakerHTMLProxyProperties
  */
 
@@ -20,25 +28,25 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 
 /**
  * @typedef {{
- *  $: {[key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]}
+ *  $: {[key in keyof HTMLElementTagNameMap]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children) => HTMLElementTagNameMap[key]}
  * }} DOMMakerShadowDOMHTMLProxyProperties
  */
 
 /**
  * @typedef {{
- *  $: {[key: string]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElement}
+ *  $: {[key: string]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children) => HTMLElement}
  * }} DOMMakerShadowDOMProxyProperties
  */
 
 /**
  * @typedef {{
- *  $map: (length: number, callback: (index: number) => HTMLElement) => HTMLElement[]
+ *  $map: (length: number, callback: (index: number) => ParamNode) => ParamNode[]
  * }} DOMMakerMapFunc
  */
 
 /**
 * @typedef {{
-*  [key: string]: (properties?: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElement
+*  [key: string]: (properties?: FunctionalDOMProperties, ...children: Children) => HTMLElement
 * }} DOMMakerProxyProperties
 */
 
@@ -48,11 +56,11 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 
 /**
  * @typedef FunctionalDOMProperties
- * @property {string} id
- * @property {string | string[]} class
- * @property {{[key: string]: string}} dataset
- * @property {{[key: string]: string}} attributes
- * @property {{[key: string]: string}} style
+ * @property {string} [id]
+ * @property {string | string[]} [class]
+ * @property {{[key: string]: string}} [dataset]
+ * @property {{[key: string]: string}} [attributes]
+ * @property {{[key: string]: string}} [style]
  */
 
 
@@ -98,16 +106,21 @@ const DOMMaker = new Proxy(function() {}, {
   },
 
   /**
-   * @template T
    * @param {*} target 
-   * @param {T extends keyof HTMLElementTagNameMap ? T : HTMLElement} property 
+   * @param {string} property 
    * @param {*} receiver 
-   * @returns {(properties: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElementTagNameMap[T]}
+   * @returns {*}
    */
   get: (target, property, receiver) => {
     switch (property) {
       case '$':
         return new Proxy(function() {}, {
+          /**
+           * @param {*} target 
+           * @param {string} innerProperty 
+           * @param {*} receiver 
+           * @returns {*}
+           */
           get: (target, innerProperty, receiver) => {
             return function(properties, shadowDOMOptions, ...children) {
               const element = createElement(innerProperty)
@@ -141,8 +154,8 @@ export default DOMMaker
 /**
  * @template T
  * @param {T extends HTMLElement ? T : never} element 
- * @param {FunctionalDOMProperties=} properties 
- * @param  {...HTMLElement} children 
+ * @param {FunctionalDOMProperties} [properties] 
+ * @param  {...ParamNode} children 
  * @returns {T}
  * 
  * It's similar to `DOMMaker.property()` but instead of  
@@ -271,6 +284,7 @@ export function buildShadowHostElement(element, properties = {}, shadowDOMOption
  * 
  */
 export const NSMaker = namespace => {
+  // @ts-ignore
   return new Proxy(function() {}, {
 
     /**
@@ -280,10 +294,13 @@ export const NSMaker = namespace => {
      * @param {*} receiver 
      * @returns {(properties: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElementTagNameMap[T]}
      */
-    get: (target, property, receiver) => {  
+    get: (target, property, receiver) => {
+      // @ts-ignore
       return function(properties, ...children) {
+        // @ts-ignore
         const element = createElementNS(property, namespace)
   
+        // @ts-ignore
         buildElementNS(element, properties, ...children)
   
         return element

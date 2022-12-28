@@ -43,7 +43,7 @@ const _ = _libs_core_js__WEBPACK_IMPORTED_MODULE_0__["default"]
 
 
 /**
- * @typedef {NSMakerProxyProperties<SVGElement, 'http://www.w3.org/2000/svg'>} SVGMaker
+ * @typedef {import('./libs/core.js').NSMakerProxyProperties<SVGElement, 'http://www.w3.org/2000/svg'>} SVGMaker
  */
 
 /**
@@ -70,12 +70,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * @typedef {(...children?: HTMLElement) => DocumentFragment} DOMMakerProxyFunc
+ * @typedef {string | number | HTMLElement | DocumentFragment} ParamNode
+ */
+
+/**
+ * @typedef {ParamNode[] | ParamNode[][]} Children
+ */
+
+/**
+ * @typedef {(...children: ParamNode[]) => DocumentFragment} DOMMakerProxyFunc
  */
 
 /**
  * @typedef {{
- *  [key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]
+ *  [key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, ...children: Children) => HTMLElementTagNameMap[key]
  * }} DOMMakerHTMLProxyProperties
  */
 
@@ -89,25 +97,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * @typedef {{
- *  $: {[key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]}
+ *  $: {[key in keyof HTMLElementTagNameMap]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children) => HTMLElementTagNameMap[key]}
  * }} DOMMakerShadowDOMHTMLProxyProperties
  */
 
 /**
  * @typedef {{
- *  $: {[key: string]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElement}
+ *  $: {[key: string]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children) => HTMLElement}
  * }} DOMMakerShadowDOMProxyProperties
  */
 
 /**
  * @typedef {{
- *  $map: (length: number, callback: (index: number) => HTMLElement) => HTMLElement[]
+ *  $map: (length: number, callback: (index: number) => ParamNode) => ParamNode[]
  * }} DOMMakerMapFunc
  */
 
 /**
 * @typedef {{
-*  [key: string]: (properties?: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElement
+*  [key: string]: (properties?: FunctionalDOMProperties, ...children: Children) => HTMLElement
 * }} DOMMakerProxyProperties
 */
 
@@ -117,11 +125,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * @typedef FunctionalDOMProperties
- * @property {string} id
- * @property {string | string[]} class
- * @property {{[key: string]: string}} dataset
- * @property {{[key: string]: string}} attributes
- * @property {{[key: string]: string}} style
+ * @property {string} [id]
+ * @property {string | string[]} [class]
+ * @property {{[key: string]: string}} [dataset]
+ * @property {{[key: string]: string}} [attributes]
+ * @property {{[key: string]: string}} [style]
  */
 
 
@@ -167,16 +175,21 @@ const DOMMaker = new Proxy(function() {}, {
   },
 
   /**
-   * @template T
    * @param {*} target 
-   * @param {T extends keyof HTMLElementTagNameMap ? T : HTMLElement} property 
+   * @param {string} property 
    * @param {*} receiver 
-   * @returns {(properties: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElementTagNameMap[T]}
+   * @returns {*}
    */
   get: (target, property, receiver) => {
     switch (property) {
       case '$':
         return new Proxy(function() {}, {
+          /**
+           * @param {*} target 
+           * @param {string} innerProperty 
+           * @param {*} receiver 
+           * @returns {*}
+           */
           get: (target, innerProperty, receiver) => {
             return function(properties, shadowDOMOptions, ...children) {
               const element = (0,_helpers_js__WEBPACK_IMPORTED_MODULE_0__.createElement)(innerProperty)
@@ -210,8 +223,8 @@ const DOMMaker = new Proxy(function() {}, {
 /**
  * @template T
  * @param {T extends HTMLElement ? T : never} element 
- * @param {FunctionalDOMProperties=} properties 
- * @param  {...HTMLElement} children 
+ * @param {FunctionalDOMProperties} [properties] 
+ * @param  {...ParamNode} children 
  * @returns {T}
  * 
  * It's similar to `DOMMaker.property()` but instead of  
@@ -340,6 +353,7 @@ function buildShadowHostElement(element, properties = {}, shadowDOMOptions = {},
  * 
  */
 const NSMaker = namespace => {
+  // @ts-ignore
   return new Proxy(function() {}, {
 
     /**
@@ -349,10 +363,13 @@ const NSMaker = namespace => {
      * @param {*} receiver 
      * @returns {(properties: FunctionalDOMProperties, ...children: HTMLElement[]) => HTMLElementTagNameMap[T]}
      */
-    get: (target, property, receiver) => {  
+    get: (target, property, receiver) => {
+      // @ts-ignore
       return function(properties, ...children) {
+        // @ts-ignore
         const element = (0,_helpers_js__WEBPACK_IMPORTED_MODULE_0__.createElementNS)(property, namespace)
   
+        // @ts-ignore
         buildElementNS(element, properties, ...children)
   
         return element
@@ -429,12 +446,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setClasses": () => (/* binding */ setClasses),
 /* harmony export */   "setStyleProperties": () => (/* binding */ setStyleProperties)
 /* harmony export */ });
+
 /**
  * @template T
- * @param {T extends keyof HTMLElementTagNameMap ? T : never} tagName 
- * @returns {HTMLElementTagNameMap[T]}
+ * @param {T extends keyof HTMLElementTagNameMap ? T : string} tagName 
+ * @returns {T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : HTMLElement}
  */
 function createElement(tagName) {
+  /**
+   * @type {any}
+   */
   const element = document.createElement(tagName)
 
   return element
@@ -448,6 +469,9 @@ function createElement(tagName) {
  * @returns {namespace extends 'http://www.w3.org/2000/svg' ? T extends keyof SVGElementTagNameMap ? SVGElementTagNameMap[T] : SVGElement : Element}
  */
 function createElementNS(tagName, namespace) {
+  /**
+   * @type {any}
+   */
   const element = document.createElementNS(namespace, tagName)
 
   return element
@@ -469,9 +493,10 @@ function setClasses(element, classes) {
 /**
  * 
  * @param {HTMLElement} element 
- * @param {HTMLElement[]} children 
+ * @param {import("./core.js").Children} children 
  */
 function setChildren(element, children) {
+  // @ts-ignore
   element.append(...children.flat(Infinity))
 }
 
@@ -533,6 +558,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createWebComponent": () => (/* binding */ createWebComponent)
 /* harmony export */ });
+// @ts-nocheck
+
 const mutationObserver = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     if (mutation.type === 'attributes') {
@@ -631,7 +658,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * @template T
- * @typedef {CoolBorderOptionsDef<T> & import('../functional-dom/libs/core').FunctionalDOMProperties} CoolBorderOptions
+ * @typedef {CoolBorderOptionsDef<T> & import('../functional-dom/libs/core.js').FunctionalDOMProperties} CoolBorderOptions
  */
 
 /**
@@ -674,6 +701,108 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 
   const css = ":host {\r\n  box-sizing: border-box;\r\n}\r\n\r\n*:not(:host),\r\n*::before,\r\n*::after {\r\n  box-sizing: inherit;\r\n}\r\n\r\n\r\n.my-content {\r\n  display: grid;\r\n  place-items: center;\r\n}\r\n\r\n/* Utility Classes Start */\r\n\r\n._grid-overlay_ {\r\n  display: grid;\r\n  grid-template-columns: 1fr;\r\n  grid-template-rows: 1fr;\r\n  grid-template-areas: 'overlay';\r\n}\r\n\r\n._grid-overlay_ > * {\r\n  grid-area: overlay;\r\n  z-index: 0;\r\n}\r\n\r\n/* Utility Classes End */\r\n\r\n\r\n/* Border Effect */\r\n\r\n:host {\r\n  --border-width: 3px;\r\n  --horizontal-length: 100px;\r\n  --vertical-length: 100px;\r\n}\r\n\r\n.wrapper-border-effect {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.wrapper-border-effect > :first-child {\r\n  border-style: solid;\r\n  border-color: transparent;\r\n  border-width: var(--border-width);\r\n}\r\n\r\n\r\n\r\n.border-effect {\r\n  pointer-events: none;\r\n\r\n  position: relative;\r\n\r\n  --horizontal-angle: 90deg;\r\n  --horizontal-reversed-angle: 270deg;\r\n\r\n  --vertical-angle: 180deg;\r\n  --vertical-reversed-angle: 0deg;\r\n  \r\n  --vertical-clip-path: polygon(\r\n    0 0,\r\n    100% 0,\r\n    50% calc(var(--vertical-length) * 2)\r\n  );\r\n  \r\n  --vertical-clip-path-reversed: polygon(\r\n    50% calc(100% - var(--vertical-length) * 2),\r\n    100% 100%,\r\n    0% 100%\r\n  );\r\n  \r\n  --horizontal-clip-path: polygon(\r\n    0 0,\r\n    0 100%,\r\n    calc(var(--horizontal-length) * 2) 50%\r\n  );\r\n  \r\n  --horizontal-clip-path-reversed: polygon(\r\n    calc(100% - var(--horizontal-length) * 2) 50%,\r\n    100% 0,\r\n    100% 100%\r\n  );\r\n}\r\n\r\n.border-effect > .border {\r\n  position: absolute;\r\n}\r\n\r\n/* Horizontal Top */\r\n.border-effect > .border:nth-child(1) {\r\n  top: 0;\r\n  left: 0;\r\n\r\n  width: 100%;\r\n  height: var(--border-width);\r\n\r\n  background-image: linear-gradient(\r\n    var(--horizontal-angle),\r\n    #fff9,\r\n    transparent var(--horizontal-length)\r\n  );\r\n\r\n  clip-path: var(--horizontal-clip-path);\r\n}\r\n\r\n/* Vertical Left */\r\n.border-effect > .border:nth-child(2) {\r\n  top: var(--border-width);\r\n  left: 0;\r\n\r\n  width: var(--border-width);\r\n  height: calc(100% - var(--border-width));\r\n\r\n  background-image: linear-gradient(\r\n    var(--vertical-angle),\r\n    #fff9,\r\n    transparent calc(var(--vertical-length) - 2px)\r\n  );\r\n\r\n  clip-path: var(--vertical-clip-path);\r\n}\r\n\r\n/* Horizontal Bottom */\r\n.border-effect > .border:nth-child(3) {\r\n  bottom: 0;\r\n  right: 0;\r\n\r\n  width: 100%;\r\n  height: var(--border-width);\r\n\r\n  background-image: linear-gradient(\r\n    var(--horizontal-reversed-angle),\r\n    #fff9,\r\n    transparent var(--horizontal-length)\r\n  );\r\n\r\n  clip-path: var(--horizontal-clip-path-reversed);\r\n}\r\n\r\n/* Vertical Right */\r\n.border-effect > .border:nth-child(4) {\r\n  bottom: var(--border-width);\r\n  right: 0;\r\n\r\n  width: var(--border-width);\r\n  height: calc(100% - var(--border-width));\r\n\r\n  background-image: linear-gradient(\r\n    var(--vertical-reversed-angle),\r\n    #fff9,\r\n    transparent calc(var(--vertical-length) - 2px)\r\n  );\r\n\r\n  clip-path: var(--vertical-clip-path-reversed);\r\n}\r\n"
+
+  const stylesheet = new CSSStyleSheet()
+  stylesheet.replaceSync(css)
+
+  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stylesheet);
+  
+
+/***/ }),
+/* 8 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CustomButton": () => (/* binding */ CustomButton)
+/* harmony export */ });
+/* harmony import */ var _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+
+
+
+function CustomButton(options, ...children) {
+  const effect = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].div()
+
+  const host = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]["custom-button"]()
+
+  let isEnd = false
+
+  let isPressed = false
+
+  host.addEventListener('pointerdown', event => {
+    if (event.button !== 0) {
+      return
+    }
+
+    isEnd = false
+    isPressed = true
+
+    effect.classList.remove('grow')
+    effect.classList.remove('grow-reversed')
+
+    // Trigger layout to compute styles
+    effect.getBoundingClientRect()
+
+    effect.classList.add('grow')
+
+    effect.style.setProperty('--y', `${event.offsetY}px`)
+    effect.style.setProperty('--x', `${event.offsetX}px`)
+
+    const maxSize = Math.max(host.offsetWidth, host.offsetHeight)
+
+    effect.style.setProperty('--size', `${maxSize}px`)
+
+    window.addEventListener('pointerup', event => {
+      isPressed = false
+
+      if (isEnd) {
+        effect.classList.remove('grow')
+        effect.getBoundingClientRect()
+        effect.classList.add('grow-reversed')
+      } else {
+        effect.addEventListener('animationend', event => {
+          if (isPressed) {
+            return
+          }
+
+          effect.classList.remove('grow')
+          effect.getBoundingClientRect()
+          effect.classList.add('grow-reversed')
+        }, {once: true})
+      }
+    }, {capture: true, once: true})
+  })
+
+  effect.addEventListener('animationend', event => {
+    isEnd = true
+  })
+
+  return (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__.buildShadowHostElement)(host, options,
+    {
+      adoptedStyleSheets: [_main_css__WEBPACK_IMPORTED_MODULE_1__["default"]],
+      children: [
+      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].slot(),
+      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].div({class: 'effect-wrapper'},
+        (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__.buildElement)(effect, {class: 'ripple-effect', attributes: {part: 'ripple-effect'}}),
+      )
+    ]
+    },
+    ...children
+  )
+}
+
+
+/***/ }),
+/* 9 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+  const css = ":host {\r\n  position: relative;\r\n  overflow: hidden;\r\n\r\n  background-color: #06f;\r\n  padding: 1rem;\r\n  border-radius: 0.3em;\r\n}\r\n\r\n:host {\r\n  --ripple-color: #0007;\r\n}\r\n\r\n.effect-wrapper {\r\n  position: absolute;\r\n  inset: 0;\r\n  margin: auto;\r\n\r\n  pointer-events: none;\r\n\r\n  overflow: hidden;\r\n}\r\n\r\n.ripple-effect {\r\n  opacity: 0;\r\n\r\n  width: var(--size);\r\n  height: var(--size);\r\n\r\n  position: absolute;\r\n  top: var(--y);\r\n  left: var(--x);\r\n\r\n  transform: translate(-50%, -50%) scale(0);\r\n\r\n  border-radius: 50%;\r\n  background-color: var(--ripple-color);\r\n\r\n  transition: transform 0.2s;\r\n}\r\n\r\n.grow {\r\n  animation: grow 0.2s ease-out forwards;\r\n}\r\n\r\n.grow-reversed {\r\n  opacity: 1;\r\n  transform: translate(-50%, -50%) scale(1.5);\r\n\r\n  animation: grow 0.2s ease-out reverse forwards;\r\n}\r\n\r\n@keyframes grow {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translate(-50%, -50%) scale(0);\r\n  }\r\n\r\n  100% {\r\n    opacity: 1;\r\n    transform: translate(-50%, -50%) scale(1.5);\r\n  }\r\n}\r\n"
 
   const stylesheet = new CSSStyleSheet()
   stylesheet.replaceSync(css)
@@ -745,6 +874,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _CoolBorder_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var _CustomButton_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+
 
 
 
@@ -778,142 +909,10 @@ function Main() {
   )
 }
 
-function CustomButton(options, ...children) {
-  const style = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].style({}, // css
-    `
-    :host {
-      position: relative;
-      overflow: hidden;
-
-      background-color: #06f;
-      padding: 1rem;
-      border-radius: 0.3em;
-    }
-
-    :host {
-      --ripple-color: #0007;
-    }
-
-    .effect-wrapper {
-      position: absolute;
-      inset: 0;
-      margin: auto;
-
-      pointer-events: none;
-
-      overflow: hidden;
-    }
-
-    .effect {
-      opacity: 0;
-
-      width: var(--size);
-      height: var(--size);
-
-      position: absolute;
-      top: var(--y);
-      left: var(--x);
-
-      transform: translate(-50%, -50%) scale(0);      
-
-      border-radius: 50%;
-      background-color: var(--ripple-color);
-      
-      transition: transform 0.2s;
-    }
-
-    .grow {
-      animation: grow 0.2s ease-out forwards;
-    }
-
-    .grow-reversed {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.5);
-
-      animation: grow 0.2s ease-out reverse forwards;
-    }
-
-    @keyframes grow {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.5);
-      }
-    }
-    `
-  )
-
-  const effect = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div()
-
-  const host = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]["custom-button"]()
-
-  let isEnd = false
-
-  let isPressed = false
-
-  host.addEventListener('pointerdown', event => {
-    isEnd = false
-    isPressed = true
-
-    effect.classList.remove('grow')
-    effect.classList.remove('grow-reversed')
-
-    effect.getBoundingClientRect()
-
-    effect.classList.add('grow')
-
-    effect.style.setProperty('--y', `${event.offsetY}px`)
-    effect.style.setProperty('--x', `${event.offsetX}px`)
-
-    const maxSize = Math.max(host.offsetWidth, host.offsetHeight)
-
-    effect.style.setProperty('--size', `${maxSize}px`)
-  })
-
-  window.addEventListener('pointerup', event => {
-    isPressed = false
-
-    if (isEnd) {
-      effect.classList.remove('grow')
-      effect.getBoundingClientRect()
-      effect.classList.add('grow-reversed')
-    } else {
-      effect.addEventListener('animationend', event => {
-        if (isPressed) {
-          return
-        }
-
-        effect.classList.remove('grow')
-        effect.getBoundingClientRect()
-        effect.classList.add('grow-reversed')
-      }, {once: true})
-    }
-  }, {capture: true})
-
-  effect.addEventListener('animationend', event => {
-    isEnd = true
-  })
-
-  return (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildShadowHostElement)(host, options,
-    {children: [
-      style,
-      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].slot(),
-      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'effect-wrapper'},
-        (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(effect, {class: 'effect'}),
-      )
-    ]},
-    ...children
-  )
-}
-
 function TypeSonic() {
   const typeEffect = TypeEffect()
 
-  const btn = CustomButton()
+  const btn = (0,_CustomButton_index_js__WEBPACK_IMPORTED_MODULE_3__.CustomButton)()
 
   btn.addEventListener('click', event => {
     typeEffect.initAnimation('Sonic The Hedgehog', 100)
@@ -925,7 +924,6 @@ function TypeSonic() {
       {class: 'btn', style: {alignSelf: 'flex-start'}},
       'Click Me'
     ),
-    CustomButton({}, 'Button'),
   )
 }
 

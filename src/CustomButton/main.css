@@ -1,0 +1,63 @@
+:host {
+  position: relative;
+  overflow: hidden;
+
+  background-color: #06f;
+  padding: 1rem;
+  border-radius: 0.3em;
+}
+
+:host {
+  --ripple-color: #0007;
+}
+
+.effect-wrapper {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.ripple-effect {
+  opacity: 0;
+
+  width: var(--size);
+  height: var(--size);
+
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+
+  transform: translate(-50%, -50%) scale(0);
+
+  border-radius: 50%;
+  background-color: var(--ripple-color);
+
+  transition: transform 0.2s;
+}
+
+.grow {
+  animation: grow 0.2s ease-out forwards;
+}
+
+.grow-reversed {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.5);
+
+  animation: grow 0.2s ease-out reverse forwards;
+}
+
+@keyframes grow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}

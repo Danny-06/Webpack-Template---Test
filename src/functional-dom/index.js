@@ -7,7 +7,7 @@ export default _
 
 
 /**
- * @typedef {NSMakerProxyProperties<SVGElement, 'http://www.w3.org/2000/svg'>} SVGMaker
+ * @typedef {import('./libs/core.js').NSMakerProxyProperties<SVGElement, 'http://www.w3.org/2000/svg'>} SVGMaker
  */
 
 /**
