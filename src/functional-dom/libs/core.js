@@ -19,10 +19,16 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  */
 
 /**
-* @typedef {{
-*  $: {[key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]}
-* }} DOMMakerShadowDOMHTMLProxyProperties
-*/
+ * @typedef {{
+ *  $: {[key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]}
+ * }} DOMMakerShadowDOMHTMLProxyProperties
+ */
+
+/**
+ * @typedef {{
+ *  $: {[key: string]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElement}
+ * }} DOMMakerShadowDOMProxyProperties
+ */
 
 /**
  * @typedef {{
@@ -37,7 +43,7 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 */
 
 /**
- * @typedef {DOMMakerProxyFunc & DOMMakerHTMLProxyProperties & DOMMakerShadowDOMHTMLProxyProperties & DOMMakerMapFunc & DOMMakerProxyProperties} DOMMakerProxy
+ * @typedef {DOMMakerProxyFunc & DOMMakerHTMLProxyProperties & DOMMakerShadowDOMHTMLProxyProperties & DOMMakerShadowDOMProxyProperties & DOMMakerMapFunc & DOMMakerProxyProperties} DOMMakerProxy
  */
 
 /**

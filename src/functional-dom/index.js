@@ -1,6 +1,5 @@
-import DOMMaker, { buildElement, buildElementNS, NSMaker } from './libs/core.js'
+import DOMMaker, { buildElement, buildElementNS, buildShadowHostElement, NSMaker } from './libs/core.js'
 import { createWebComponent } from './libs/create-web-component.js'
-
 
 const _ = DOMMaker
 
@@ -18,6 +17,7 @@ const _svg = NSMaker('http://www.w3.org/2000/svg')
 
 export {
   buildElement,
+  buildShadowHostElement,
   createWebComponent,
 
   _svg,

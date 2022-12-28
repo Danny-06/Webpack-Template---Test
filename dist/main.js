@@ -10,7 +10,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 
-  const css = "@charset \"UTF-8\";\r\n\r\n[data-id=\"app-content\"] {\r\n  display: grid;\r\n  grid-template-columns: 300px 1fr;\r\n  grid-template-rows: 1fr;\r\n\r\n  padding: 0;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n.aside-component {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding: 1rem;\r\n\r\n  background-color: #142434;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n.aside-component > .item {\r\n  padding-inline: 0.6rem;\r\n  padding-block: 0.6rem;\r\n\r\n  border: solid 2px #fff;\r\n  background-color: #06f;\r\n}\r\n\r\n.aside-component > .item:last-child {\r\n  margin-top: auto;\r\n}\r\n\r\n.main-component {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n\r\n  padding: 1rem;\r\n}\r\n\r\n.main-component > .title-border-wrapper {\r\n  padding-bottom: 1rem;\r\n}\r\n\r\n.title-border-wrapper {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 500px;\r\n  --vertical-length: 3rem;\r\n}\r\n\r\n.title-border-wrapper > .title {\r\n  padding-block: 1rem;\r\n  padding-inline: 0.5rem;\r\n\r\n  text-align: center;\r\n}\r\n\r\n\r\n.cards-container {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 700px;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.cards-container > .card {\r\n  flex-shrink: 1;\r\n}\r\n\r\n.card {\r\n  max-width: 190px;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding-block: 0.5rem;\r\n  padding-inline: 1rem;\r\n\r\n  border-radius: 0.6rem;\r\n  background-color: #06f;\r\n}\r\n\r\n.card > .title {\r\n  font-size: 1.2rem;\r\n  font-weight: bold;\r\n}\r\n"
+  const css = "@charset \"UTF-8\";\r\n\r\n[data-id=\"app-content\"] {\r\n  display: grid;\r\n  grid-template-columns: 300px 1fr;\r\n  grid-template-rows: 1fr;\r\n\r\n  padding: 0;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n.aside-component {\r\n  grid-column: 1 / span 1;\r\n  grid-row: 1 / span 1;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding: 1rem;\r\n\r\n  background-color: #142434;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n@media (max-width: 600px) {\r\n  .aside-component {\r\n    display: none;\r\n  }\r\n\r\n  [data-id=\"app-content\"] {\r\n    grid-template-columns: 1fr;\r\n  }\r\n}\r\n\r\n.aside-component > .item {\r\n  padding-inline: 0.6rem;\r\n  padding-block: 0.6rem;\r\n\r\n  border: solid 2px #fff;\r\n  background-color: #06f;\r\n}\r\n\r\n.aside-component > .item:last-child {\r\n  margin-top: auto;\r\n}\r\n\r\n.main-component {\r\n  grid-column: 2 / span 1;\r\n  grid-row: 1 / span 1;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n\r\n  padding: 1rem;\r\n}\r\n\r\n.main-component > .title-border-wrapper {\r\n  padding-bottom: 1rem;\r\n}\r\n\r\n.title-border-wrapper {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 500px;\r\n  --vertical-length: 3rem;\r\n}\r\n\r\n.title-border-wrapper > .title {\r\n  padding-block: 1rem;\r\n  padding-inline: 0.5rem;\r\n\r\n  text-align: center;\r\n}\r\n\r\n\r\n.cards-container {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 700px;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.cards-container > .card {\r\n  flex-shrink: 1;\r\n}\r\n\r\n.card {\r\n  max-width: 190px;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding-block: 0.5rem;\r\n  padding-inline: 1rem;\r\n\r\n  border-radius: 0.6rem;\r\n  background-color: #06f;\r\n}\r\n\r\n.card > .title {\r\n  font-size: 1.2rem;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.btn {\r\n  background-color: #06f;\r\n  padding: 1rem;\r\n  border-radius: 0.3em;\r\n}\r\n"
 
   const stylesheet = new CSSStyleSheet()
   stylesheet.replaceSync(css)
@@ -28,12 +28,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_svg": () => (/* binding */ _svg),
 /* harmony export */   "buildElement": () => (/* reexport safe */ _libs_core_js__WEBPACK_IMPORTED_MODULE_0__.buildElement),
 /* harmony export */   "buildElementNS": () => (/* reexport safe */ _libs_core_js__WEBPACK_IMPORTED_MODULE_0__.buildElementNS),
+/* harmony export */   "buildShadowHostElement": () => (/* reexport safe */ _libs_core_js__WEBPACK_IMPORTED_MODULE_0__.buildShadowHostElement),
 /* harmony export */   "createWebComponent": () => (/* reexport safe */ _libs_create_web_component_js__WEBPACK_IMPORTED_MODULE_1__.createWebComponent),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _libs_core_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
 /* harmony import */ var _libs_create_web_component_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-
 
 
 
@@ -83,14 +83,21 @@ __webpack_require__.r(__webpack_exports__);
  * @typedef ShadowDOMOptions
  * @property {ShadowRootInit} [init]
  * @property {ShadowRootMode} [mode=open]
+ * @property {CSSStyleSheet[]} [adoptedStyleSheets=[]]
  * @property {HTMLElement[]} [children]
  */
 
 /**
-* @typedef {{
-*  $: {[key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]}
-* }} DOMMakerShadowDOMHTMLProxyProperties
-*/
+ * @typedef {{
+ *  $: {[key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElementTagNameMap[key]}
+ * }} DOMMakerShadowDOMHTMLProxyProperties
+ */
+
+/**
+ * @typedef {{
+ *  $: {[key: string]: (properties?: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: HTMLElement[]) => HTMLElement}
+ * }} DOMMakerShadowDOMProxyProperties
+ */
 
 /**
  * @typedef {{
@@ -105,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 */
 
 /**
- * @typedef {DOMMakerProxyFunc & DOMMakerHTMLProxyProperties & DOMMakerShadowDOMHTMLProxyProperties & DOMMakerMapFunc & DOMMakerProxyProperties} DOMMakerProxy
+ * @typedef {DOMMakerProxyFunc & DOMMakerHTMLProxyProperties & DOMMakerShadowDOMHTMLProxyProperties & DOMMakerShadowDOMProxyProperties & DOMMakerMapFunc & DOMMakerProxyProperties} DOMMakerProxy
  */
 
 /**
@@ -212,7 +219,7 @@ const DOMMaker = new Proxy(function() {}, {
  * the `properties` and the `children` to it.
  */
 function buildElement(element, properties = {}, ...children) {
-  const {id, class: classes, dataset, attributes, style} = properties
+  const {id, class: classes, dataset, attributes, style} = properties ?? {}
 
   const tp = window.trustedTypes ? trustedTypes.createPolicy('', {createHTML: e => e, createScriptURL: e => e }) : {createHTML: e => e, createScriptURL: e => e }
 
@@ -272,11 +279,15 @@ function buildShadowHostElement(element, properties = {}, shadowDOMOptions = {},
   if (shadowDOMOptions.mode) {
     shadowRootInit.mode = shadowDOMOptions.mode
   }
-
+  
   const shadowRoot = element.attachShadow(shadowRootInit)
-
+  
+  if (Array.isArray(shadowDOMOptions.adoptedStyleSheets)) {
+    shadowRoot.adoptedStyleSheets = shadowDOMOptions.adoptedStyleSheets
+  }
+  
   shadowRoot.append(...shadowDOMOptions.children ?? [])
-
+  
   return element
 }
 
@@ -630,11 +641,7 @@ __webpack_require__.r(__webpack_exports__);
  * @returns {T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : HTMLElement}
  */
 function CoolBorder(options, ...children) {
-  const {tagName = 'div'} = options
-
-  const wrapper =  _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].$[tagName]()
-
-  wrapper.shadowRoot.adoptedStyleSheets = [_main_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
+  const {tagName = 'div'} = options ?? {}
 
   const shadowRootContent = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].div({class: 'wrapper-border-effect _grid-overlay_'}, 
     _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].div({class: 'my-content'},
@@ -648,7 +655,10 @@ function CoolBorder(options, ...children) {
     )
   )
 
-  wrapper.shadowRoot.append(shadowRootContent)
+  const wrapper = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].$[tagName](null, {
+    adoptedStyleSheets: [_main_css__WEBPACK_IMPORTED_MODULE_1__["default"]],
+    children: [shadowRootContent]
+  })
 
   return (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__.buildElement)(wrapper, options, ...children)
 }
@@ -768,10 +778,142 @@ function Main() {
   )
 }
 
+function CustomButton(options, ...children) {
+  const style = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].style({}, // css
+    `
+    :host {
+      position: relative;
+      overflow: hidden;
+
+      background-color: #06f;
+      padding: 1rem;
+      border-radius: 0.3em;
+    }
+
+    :host {
+      --ripple-color: #0007;
+    }
+
+    .effect-wrapper {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+
+      pointer-events: none;
+
+      overflow: hidden;
+    }
+
+    .effect {
+      opacity: 0;
+
+      width: var(--size);
+      height: var(--size);
+
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+
+      transform: translate(-50%, -50%) scale(0);      
+
+      border-radius: 50%;
+      background-color: var(--ripple-color);
+      
+      transition: transform 0.2s;
+    }
+
+    .grow {
+      animation: grow 0.2s ease-out forwards;
+    }
+
+    .grow-reversed {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.5);
+
+      animation: grow 0.2s ease-out reverse forwards;
+    }
+
+    @keyframes grow {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+    }
+    `
+  )
+
+  const effect = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div()
+
+  const host = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]["custom-button"]()
+
+  let isEnd = false
+
+  let isPressed = false
+
+  host.addEventListener('pointerdown', event => {
+    isEnd = false
+    isPressed = true
+
+    effect.classList.remove('grow')
+    effect.classList.remove('grow-reversed')
+
+    effect.getBoundingClientRect()
+
+    effect.classList.add('grow')
+
+    effect.style.setProperty('--y', `${event.offsetY}px`)
+    effect.style.setProperty('--x', `${event.offsetX}px`)
+
+    const maxSize = Math.max(host.offsetWidth, host.offsetHeight)
+
+    effect.style.setProperty('--size', `${maxSize}px`)
+  })
+
+  window.addEventListener('pointerup', event => {
+    isPressed = false
+
+    if (isEnd) {
+      effect.classList.remove('grow')
+      effect.getBoundingClientRect()
+      effect.classList.add('grow-reversed')
+    } else {
+      effect.addEventListener('animationend', event => {
+        if (isPressed) {
+          return
+        }
+
+        effect.classList.remove('grow')
+        effect.getBoundingClientRect()
+        effect.classList.add('grow-reversed')
+      }, {once: true})
+    }
+  }, {capture: true})
+
+  effect.addEventListener('animationend', event => {
+    isEnd = true
+  })
+
+  return (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildShadowHostElement)(host, options,
+    {children: [
+      style,
+      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].slot(),
+      _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'effect-wrapper'},
+        (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(effect, {class: 'effect'}),
+      )
+    ]},
+    ...children
+  )
+}
+
 function TypeSonic() {
   const typeEffect = TypeEffect()
 
-  const btn = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].button()
+  const btn = CustomButton()
 
   btn.addEventListener('click', event => {
     typeEffect.initAnimation('Sonic The Hedgehog', 100)
@@ -780,9 +922,10 @@ function TypeSonic() {
   return (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
     (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(typeEffect.component, {class: 'type-effect-component'}),
     (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(btn,
-      {class: 'btn', style: {alignSelf: 'flex-start', backgroundColor: '#06f', padding: '1rem', borderRadius: '0.3em'}},
+      {class: 'btn', style: {alignSelf: 'flex-start'}},
       'Click Me'
     ),
+    CustomButton({}, 'Button'),
   )
 }
 
@@ -827,7 +970,6 @@ function TypeEffect() {
     }
   }
 }
-
 
 const render = (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
   App(),
