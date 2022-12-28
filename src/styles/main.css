@@ -8,11 +8,30 @@
   padding: 0;
 
   overflow: auto;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 }
+
+@each $value in sonic, tails, knuckles {
+  html {
+    --width: $(value)-px;
+  }
+}
+
+@for $i from 1 to 3 {
+  html {
+    --width: $(i)px;
+  }
+}
+
 
 @custom-media --custom-media (width <= 700px);
 
-html {
+@custom-selector :--custom-selector .my-selector > .sos;
+
+html, :--custom-selector {
   background-color: #000;
 
   & > body {
@@ -39,29 +58,22 @@ html {
   background-color: #142434;
 
   overflow: auto;
-}
 
-
-@media (max-width: 600px) {
-  .aside-component {
+  @media (max-width: 600px) {
     display: none;
   }
 
-  [data-id="app-content"] {
-    grid-template-columns: 1fr;
+  > .item {
+    padding-inline: 0.6rem;
+    padding-block: 0.6rem;
+  
+    border: solid 2px #fff;
+    background-color: #06f;
+
+    &:last-child {
+      margin-top: auto;
+    }
   }
-}
-
-.aside-component > .item {
-  padding-inline: 0.6rem;
-  padding-block: 0.6rem;
-
-  border: solid 2px #fff;
-  background-color: #06f;
-}
-
-.aside-component > .item:last-child {
-  margin-top: auto;
 }
 
 .main-component {
@@ -73,27 +85,26 @@ html {
   row-gap: 1rem;
 
   padding: 1rem;
-}
 
-.main-component > .title-border-wrapper {
-  padding-bottom: 1rem;
+  > .title-border-wrapper {
+    align-self: center;
+
+    padding-bottom: 1rem;
+  }
 }
 
 .title-border-wrapper {
-  align-self: center;
-
   width: 100%;
   max-width: 500px;
   --vertical-length: 3rem;
+
+  > .title {
+    padding-block: 1rem;
+    padding-inline: 0.5rem;
+  
+    text-align: center;
+  }
 }
-
-.title-border-wrapper > .title {
-  padding-block: 1rem;
-  padding-inline: 0.5rem;
-
-  text-align: center;
-}
-
 
 .cards-container {
   align-self: center;
@@ -105,15 +116,15 @@ html {
   justify-content: center;
   align-items: center;
   column-gap: 1rem;
-}
 
-.cards-container > .card {
-  flex-shrink: 1;
+  > .card {
+    max-width: 190px;
+
+    flex-shrink: 1;
+  }
 }
 
 .card {
-  max-width: 190px;
-
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
@@ -123,13 +134,12 @@ html {
 
   border-radius: 0.6rem;
   background-color: #06f;
-}
 
-.card > .title {
-  font-size: 1.2rem;
-  font-weight: bold;
+  > .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 }
-
 
 .btn {
   background-color: #06f;
