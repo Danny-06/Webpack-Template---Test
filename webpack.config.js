@@ -18,7 +18,9 @@ export default {
   devServer: {
     static: {
       directory: resolvePath('dist'),
-    }
+    },
+    port: 8080,
+    https: false,
   },
 
   entry: './src/index.js',
