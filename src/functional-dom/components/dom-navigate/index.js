@@ -67,13 +67,6 @@ window.addEventListener('popstate', event => {
 
 export const navigation = {
 
-  // setRoot(url) {
-  //   const newURL = new URL(url)
-  //   const root = newURL.pathname.split('/').slice(0, -1).join('/')
-
-  //   rootPath = root
-  // },
-
   get state() {
     return history.state
   },
