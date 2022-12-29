@@ -1,3 +1,6 @@
+# Simple SPA Config
+# https://gist.github.com/juanbrujo/ed8f6c19c5f16c94ce5440535730ee62
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
