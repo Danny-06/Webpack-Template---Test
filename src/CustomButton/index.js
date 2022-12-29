@@ -11,6 +11,14 @@ export function CustomButton(options, ...children) {
 
   let isPressed = false
 
+  host.addEventListener('pointercancel', event => {
+    isEnd = false
+    isPressed = true
+
+    effect.classList.remove('grow')
+    effect.classList.remove('grow-reversed')
+  })
+
   host.addEventListener('pointerdown', event => {
     if (event.button !== 0) {
       return
@@ -34,7 +42,7 @@ export function CustomButton(options, ...children) {
 
     effect.style.setProperty('--size', `${maxSize}px`)
 
-    window.addEventListener('pointerup', event => {
+    const pointerUpListener = event => {
       isPressed = false
 
       if (isEnd) {
@@ -52,7 +60,13 @@ export function CustomButton(options, ...children) {
           effect.classList.add('grow-reversed')
         }, {once: true})
       }
-    }, {capture: true, once: true})
+    }
+
+    if (event.pointerType === 'touch') {
+      window.addEventListener('touchend', pointerUpListener, {capture: true, once: true})
+    } else {
+      window.addEventListener('pointerup', pointerUpListener, {capture: true, once: true})
+    }
   })
 
   effect.addEventListener('animationend', event => {
