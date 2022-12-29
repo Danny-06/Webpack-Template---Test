@@ -8,13 +8,18 @@ import { sortWildCardRouteToEnd } from "./utils.js";
  */
 
 /**
- * 
- * @param {import("../../libs/core.js").FunctionalDOMProperties} options 
- * @param {NavigateRoute[]} navigateRoutes 
- * @returns 
+ * @typedef DOMNavigateObject
+ * @property {HTMLElement} component
+ * @property {(pathname: string) => void} update
  */
-export default function DOMNavigate(options, navigateRoutes) {
-  const component = _['dom-navigate'](options)
+
+/**
+ * 
+ * @param {NavigateRoute[]} navigateRoutes 
+ * @returns {DOMNavigateObject}
+ */
+export default function DOMNavigate(navigateRoutes) {
+  const component = _['dom-navigate']()
 
   navigateRoutes = sortWildCardRouteToEnd(navigateRoutes)  
 

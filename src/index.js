@@ -34,7 +34,7 @@ const routes = [
   },
 ]
 
-const Navigate = DOMNavigate({}, routes)
+const Navigate = DOMNavigate(routes)
 
 navigation.addEventListener('custom-navigate', event => {
   Navigate.update(location.pathname)
