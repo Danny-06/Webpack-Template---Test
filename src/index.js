@@ -30,13 +30,11 @@ const routes = [
   },
   {
     path: '/amy',
-    component: function Amy() {
-      return _['amy-p']({}, 'Amy')
-    }
+    component: CardsContainer,
   },
 ]
 
-const Navigate = DOMNavigate({class: 'navigate-component'}, routes)
+const Navigate = DOMNavigate({}, routes)
 
 navigation.addEventListener('custom-navigate', event => {
   Navigate.update(location.pathname)
@@ -74,7 +72,8 @@ function Main() {
     CoolBorder({tagName: 'h1', class: 'title-border-wrapper'},
       _.div({class: 'title'}, 'Some cool title')
     ),
-    CardsContainer(),
+
+    $(Navigate.component, {class: 'navigate-component'}),
 
     TypeSonic(),
 
@@ -82,8 +81,6 @@ function Main() {
     $(amyBtn, {class: 'btn', style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
     $(rootBtn, {class: 'btn', style: {backgroundColor: '#090'}}, 'Go to Root'),
     $(notFoundBtn, {class: 'btn', style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
-
-    Navigate.component,
   )
 }
 
