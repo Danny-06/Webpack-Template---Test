@@ -14,15 +14,16 @@ const Modes = {
 
 export default {
   mode: Modes.NONE,
+  devtool: 'inline-source-map',
 
   devServer: {
     static: {
-      directory: resolvePath('./'),
+      directory: resolvePath('./dist'),
     },
     port: 8080,
     // Redirect not found routes to index.html
     historyApiFallback: {
-      index: './dist/index.html'
+      index: './index.html'
     },
     https: false,
   },
