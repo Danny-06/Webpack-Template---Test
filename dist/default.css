@@ -121,6 +121,12 @@ fieldset {
   border: solid 2px #c0c0c0;
 }
 
+pre {
+  margin: 0;
+  font-family: monospace;
+  white-space: pre;
+}
+
 legend {
   border: none;
   padding: 0.3em;

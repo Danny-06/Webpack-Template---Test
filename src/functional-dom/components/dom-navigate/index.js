@@ -3,7 +3,7 @@ import _ from "../../index.js";
 
 /**
  * @typedef NavigateRoute
- * @property {string} url
+ * @property {string} path
  * @property {() => import("../../libs/core.js").CoreNode} component
  */
 
@@ -23,7 +23,7 @@ export default function DOMNavigate(options, navigateRoutes) {
       let renderComponent = null
 
       for (const route of navigateRoutes) {
-        if (route.url === location.pathname) {
+        if (route.path === location.pathname) {
           renderComponent = route.component
           break
         }
@@ -47,6 +47,12 @@ function dispatchCustomNavigate() {
   const customNavigate = new CustomEvent('custom-navigate', {detail: null})
   window.dispatchEvent(customNavigate)
 }
+
+// Fire `custom-navigate` event on `load`
+window.addEventListener('load', event => {
+  dispatchCustomNavigate()
+}, {once: true})
+
 
 window.addEventListener('popstate', event => {
   dispatchCustomNavigate()

@@ -9,7 +9,7 @@
   "author": "undefined",
   "scripts": {
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack && copy .\\dist\\index.html .\\dist\\404.html"
   },
   "private": false,
   "dependencies": {

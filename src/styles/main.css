@@ -2,6 +2,7 @@
 
 @custom-media --custom-media (width <= 700px);
 
+@custom-media --mobile-like (width <= 600px);
 
 [data-id="app-content"] {
   display: grid;
@@ -59,7 +60,7 @@
 
   overflow: auto;
 
-  @media (max-width: 600px) {
+  @media (--mobile-like) {
     display: none;
   }
 
@@ -85,6 +86,12 @@
   row-gap: 1rem;
 
   padding: 1rem;
+
+  overflow: auto;
+
+  @media (--mobile-like) {
+    grid-column: 1 / span 1;
+  }
 
   > .title-border-wrapper {
     align-self: center;

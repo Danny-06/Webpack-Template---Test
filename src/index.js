@@ -9,7 +9,13 @@ document.adoptedStyleSheets = [mainStyleSheet]
 
 const Navigate = DOMNavigate({class: 'navigate-component'}, [
   {
-    url: '/sonic',
+    path: '/',
+    component: function Root() {
+      return _.div({class: 'root'}, 'The root of things')
+    }
+  },
+  {
+    path: '/sonic',
     component: function Sonic() {
       return _['sonic-p']({},
         'Sonic',
@@ -18,7 +24,7 @@ const Navigate = DOMNavigate({class: 'navigate-component'}, [
     }
   },
   {
-    url: '/amy',
+    path: '/amy',
     component: function Amy() {
       return _['amy-p']({}, 'Amy')
     }
@@ -62,9 +68,9 @@ function Main() {
 
     TypeSonic(),
 
-    $(sonicBtn, {class: 'btn'}, 'Go to Sonic'),
-    $(amyBtn, {class: 'btn'}, 'Go to Amy'),
-    $(rootBtn, {class: 'btn'}, 'Go to Root'),
+    $(sonicBtn, {class: 'btn', style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
+    $(amyBtn, {class: 'btn', style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
+    $(rootBtn, {class: 'btn', style: {backgroundColor: '#090'}}, 'Go to Root'),
 
     Navigate.component,
   )
@@ -100,8 +106,8 @@ function CardsContainer() {
 
 
 function TypeEffect() {
-  const placeholderForEmptyString = () => _.div({style: {height: '1em'}})
-  const component = _['type-effect']({class: 'type-effect-component', style: {lineHeight: '1em'}}, placeholderForEmptyString())
+  const placeholderForEmptyString = () => _.pre({}, ' ')
+  const component = _['type-effect']({class: 'type-effect-component', style: {lineHeight: '1.3em'}}, placeholderForEmptyString())
 
   let i
   let timeoutAnimation
@@ -133,5 +139,7 @@ function TypeEffect() {
 const render = _(
   App(),
 )
+
+document.body.replaceChildren()
 
 document.body.append(render)
