@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+@custom-media --custom-media (width <= 700px);
+
+
 [data-id="app-content"] {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -26,12 +29,9 @@
   }
 }
 
+@custom-selector :--custom-selector html;
 
-@custom-media --custom-media (width <= 700px);
-
-@custom-selector :--custom-selector .my-selector > .sos;
-
-html, :--custom-selector {
+:--custom-selector {
   background-color: #000;
 
   & > body {

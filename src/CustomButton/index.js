@@ -5,6 +5,7 @@ export function CustomButton(options, ...children) {
   const effect = _.div()
 
   const host = _['custom-button']()
+  host.role = 'button'
 
   let isEnd = false
 

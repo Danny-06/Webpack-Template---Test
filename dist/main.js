@@ -10,7 +10,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 
-  const css = "@charset \"UTF-8\";\r\n\r\n[data-id=\"app-content\"] {\r\n  display: grid;\r\n  grid-template-columns: 300px 1fr;\r\n  grid-template-rows: 1fr;\r\n\r\n  padding: 0;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n@media (max-width: 600px) {\r\n\r\n[data-id=\"app-content\"] {\r\n    grid-template-columns: 1fr\r\n}\r\n  }\r\n\r\nhtml {\r\n    --width: (sonic)px;\r\n  }\r\n\r\nhtml {\r\n    --width: (tails)px;\r\n  }\r\n\r\nhtml {\r\n    --width: (knucles)px;\r\n  }\r\n\r\nhtml {\r\n    --width: 1px;\r\n  }\r\n\r\nhtml {\r\n    --width: 2px;\r\n  }\r\n\r\nhtml {\r\n    --width: 3px;\r\n  }\r\n\r\nhtml,:is(.my-selector > .sos) {\r\n  background-color: #000;\r\n}\r\n\r\nhtml > body,:is(.my-selector > .sos) > body {\r\n    background-color: #000;\r\n  }\r\n\r\n@media (max-width: 700px) {\r\n\r\nhtml > body,:is(.my-selector > .sos) > body {\r\n      background-color: #111\r\n  }\r\n    }\r\n\r\n\r\n.aside-component {\r\n  grid-column: 1 / span 1;\r\n  grid-row: 1 / span 1;\r\n  background-color: #000;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding: 1rem;\r\n\r\n  background-color: #142434;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n@media (max-width: 600px) {\r\n\r\n\r\n.aside-component {\r\n    display: none\r\n}\r\n  }\r\n\r\n\r\n.aside-component > .item {\r\n    padding-inline: 0.6rem;\r\n    padding-block: 0.6rem;\r\n  \r\n    border: solid 2px #fff;\r\n    background-color: #06f;\r\n  }\r\n\r\n\r\n.aside-component > .item:last-child {\r\n      margin-top: auto;\r\n    }\r\n\r\n.main-component {\r\n  grid-column: 2 / span 1;\r\n  grid-row: 1 / span 1;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n\r\n  padding: 1rem;\r\n}\r\n\r\n.main-component > .title-border-wrapper {\r\n    align-self: center;\r\n\r\n    padding-bottom: 1rem;\r\n  }\r\n\r\n.title-border-wrapper {\r\n  width: 100%;\r\n  max-width: 500px;\r\n  --vertical-length: 3rem;\r\n}\r\n\r\n.title-border-wrapper > .title {\r\n    padding-block: 1rem;\r\n    padding-inline: 0.5rem;\r\n  \r\n    text-align: center;\r\n  }\r\n\r\n.cards-container {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 700px;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.cards-container > .card {\r\n    max-width: 190px;\r\n\r\n    flex-shrink: 1;\r\n  }\r\n\r\n.card {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding-block: 0.5rem;\r\n  padding-inline: 1rem;\r\n\r\n  border-radius: 0.6rem;\r\n  background-color: #06f;\r\n}\r\n\r\n.card > .title {\r\n    font-size: 1.2rem;\r\n    font-weight: bold;\r\n  }\r\n\r\n.btn {\r\n  background-color: #06f;\r\n  padding: 1rem;\r\n  border-radius: 0.3em;\r\n}\r\n"
+  const css = "@charset \"UTF-8\";\r\n\r\n\r\n[data-id=\"app-content\"] {\r\n  display: grid;\r\n  grid-template-columns: 300px 1fr;\r\n  grid-template-rows: 1fr;\r\n\r\n  padding: 0;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n@media (max-width: 600px) {\r\n\r\n\r\n[data-id=\"app-content\"] {\r\n    grid-template-columns: 1fr\r\n}\r\n  }\r\n\r\nhtml {\r\n    --width: sonic-px;\r\n  }\r\n\r\nhtml {\r\n    --width: tails-px;\r\n  }\r\n\r\nhtml {\r\n    --width: knuckles-px;\r\n  }\r\n\r\nhtml {\r\n    --width: 1px;\r\n  }\r\n\r\nhtml {\r\n    --width: 2px;\r\n  }\r\n\r\nhtml {\r\n    --width: 3px;\r\n  }\r\n\r\n:is(html) {\r\n  background-color: #000;\r\n}\r\n\r\n:is(html) > body {\r\n    background-color: #000;\r\n  }\r\n\r\n@media (max-width: 700px) {\r\n\r\n:is(html) > body {\r\n      background-color: #111\r\n  }\r\n    }\r\n\r\n\r\n.aside-component {\r\n  grid-column: 1 / span 1;\r\n  grid-row: 1 / span 1;\r\n  background-color: #000;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding: 1rem;\r\n\r\n  background-color: #142434;\r\n\r\n  overflow: auto;\r\n}\r\n\r\n\r\n@media (max-width: 600px) {\r\n\r\n\r\n.aside-component {\r\n    display: none\r\n}\r\n  }\r\n\r\n\r\n.aside-component > .item {\r\n    padding-inline: 0.6rem;\r\n    padding-block: 0.6rem;\r\n  \r\n    border: solid 2px #fff;\r\n    background-color: #06f;\r\n  }\r\n\r\n\r\n.aside-component > .item:last-child {\r\n      margin-top: auto;\r\n    }\r\n\r\n.main-component {\r\n  grid-column: 2 / span 1;\r\n  grid-row: 1 / span 1;\r\n\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n\r\n  padding: 1rem;\r\n}\r\n\r\n.main-component > .title-border-wrapper {\r\n    align-self: center;\r\n\r\n    padding-bottom: 1rem;\r\n  }\r\n\r\n.title-border-wrapper {\r\n  width: 100%;\r\n  max-width: 500px;\r\n  --vertical-length: 3rem;\r\n}\r\n\r\n.title-border-wrapper > .title {\r\n    padding-block: 1rem;\r\n    padding-inline: 0.5rem;\r\n  \r\n    text-align: center;\r\n  }\r\n\r\n.cards-container {\r\n  align-self: center;\r\n\r\n  width: 100%;\r\n  max-width: 700px;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.cards-container > .card {\r\n    max-width: 190px;\r\n\r\n    flex-shrink: 1;\r\n  }\r\n\r\n.card {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 0.5rem;\r\n\r\n  padding-block: 0.5rem;\r\n  padding-inline: 1rem;\r\n\r\n  border-radius: 0.6rem;\r\n  background-color: #06f;\r\n}\r\n\r\n.card > .title {\r\n    font-size: 1.2rem;\r\n    font-weight: bold;\r\n  }\r\n\r\n.btn {\r\n  background-color: #06f;\r\n  padding: 1rem;\r\n  border-radius: 0.3em;\r\n}\r\n"
 
   const stylesheet = new CSSStyleSheet()
   stylesheet.replaceSync(css)
@@ -70,15 +70,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * @typedef {string | number | HTMLElement | DocumentFragment} ParamNode
+ * @typedef {string | number | HTMLElement | DocumentFragment} CoreNode
  */
 
 /**
- * @typedef {ParamNode[] | ParamNode[][]} Children
+ * @typedef {CoreNode[] | CoreNode[][]} Children
  */
 
 /**
- * @typedef {(...children: ParamNode[]) => DocumentFragment} DOMMakerProxyFunc
+ * @typedef {(...children: CoreNode[]) => DocumentFragment} DOMMakerProxyFunc
  */
 
 /**
@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * @typedef {{
- *  $map: (length: number, callback: (index: number) => ParamNode) => ParamNode[]
+ *  $map: (length: number, callback: (index: number) => CoreNode) => CoreNode[]
  * }} DOMMakerMapFunc
  */
 
@@ -224,7 +224,7 @@ const DOMMaker = new Proxy(function() {}, {
  * @template T
  * @param {T extends HTMLElement ? T : never} element 
  * @param {FunctionalDOMProperties} [properties] 
- * @param  {...ParamNode} children 
+ * @param  {...CoreNode} children 
  * @returns {T}
  * 
  * It's similar to `DOMMaker.property()` but instead of  
@@ -725,6 +725,7 @@ function CustomButton(options, ...children) {
   const effect = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].div()
 
   const host = _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]["custom-button"]()
+  host.role = 'button'
 
   let isEnd = false
 
@@ -810,6 +811,116 @@ __webpack_require__.r(__webpack_exports__);
   /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stylesheet);
   
 
+/***/ }),
+/* 10 */
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DOMNavigate),
+/* harmony export */   "navigation": () => (/* binding */ navigation)
+/* harmony export */ });
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+
+
+/**
+ * @typedef NavigateRoute
+ * @property {string} url
+ * @property {() => import("../../libs/core.js").CoreNode} component
+ */
+
+/**
+ * 
+ * @param {import("../../libs/core.js").FunctionalDOMProperties} options 
+ * @param {NavigateRoute[]} navigateRoutes 
+ * @returns 
+ */
+function DOMNavigate(options, navigateRoutes) {
+  const component = _index_js__WEBPACK_IMPORTED_MODULE_0__["default"]["dom-navigate"](options)
+
+  return {
+    component,
+
+    update() {
+      let renderComponent = null
+
+      for (const route of navigateRoutes) {
+        if (route.url === location.pathname) {
+          renderComponent = route.component
+          break
+        }
+      }
+
+      component.replaceChildren()
+
+      if (typeof renderComponent !== 'function') {
+        return
+      }
+
+      // @ts-ignore
+      component.append(renderComponent())
+    }
+  }
+}
+
+
+
+function dispatchCustomNavigate() {
+  const customNavigate = new CustomEvent('custom-navigate', {detail: null})
+  window.dispatchEvent(customNavigate)
+}
+
+window.addEventListener('popstate', event => {
+  dispatchCustomNavigate()
+})
+
+const navigation = {
+
+  get state() {
+    return history.state
+  },
+
+  /**
+   * 
+   * @param {string} url 
+   * @param {History['state']} [state=null] 
+   */
+  replace(url, state = null) {
+    history.replaceState(state, '', url)
+    dispatchCustomNavigate()
+  },
+
+  /**
+   * 
+   * @param {string} url 
+   * @param {History['state']} [state=null] 
+   */
+  push(url, state = null) {
+    history.pushState(state, '', url)
+    dispatchCustomNavigate()
+  },
+
+  forward() {
+    history.forward()
+  },
+
+  back() {
+    history.back()
+  },
+
+  /**
+   * 
+   * @param {'custom-navigate'} eventType 
+   * @param {(event: CustomEvent) => void} callbackListener 
+   */
+  addEventListener(eventType, callbackListener) {
+    window.addEventListener(eventType, callbackListener)
+  }
+
+}
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -875,6 +986,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var _CoolBorder_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
 /* harmony import */ var _CustomButton_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
+
 
 
 
@@ -882,6 +995,28 @@ __webpack_require__.r(__webpack_exports__);
 
 document.adoptedStyleSheets = [_styles_main_css__WEBPACK_IMPORTED_MODULE_0__["default"]]
 
+
+const Navigate = (0,_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__["default"])({class: 'navigate-component'}, [
+  {
+    url: '/sonic',
+    component: function Sonic() {
+      return _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]["sonic-p"]({},
+        'Sonic',
+        _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'state'}, `State value of this path: ${JSON.stringify(_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.state)}`)
+      )
+    }
+  },
+  {
+    url: '/amy',
+    component: function Amy() {
+      return _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"]["amy-p"]({}, 'Amy')
+    }
+  },
+])
+
+_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.addEventListener('custom-navigate', event => {
+  Navigate.update()
+})
 
 function App() {
   return _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({dataset: {id: 'app'}},
@@ -899,6 +1034,15 @@ function Aside() {
 }
 
 function Main() {
+  const sonicBtn = (0,_CustomButton_index_js__WEBPACK_IMPORTED_MODULE_3__.CustomButton)()
+  sonicBtn.addEventListener('click', event => _functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.push('/sonic', 'Princess Elise'))
+
+  const amyBtn = (0,_CustomButton_index_js__WEBPACK_IMPORTED_MODULE_3__.CustomButton)()
+  amyBtn.addEventListener('click', event => _functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.push('/amy'))
+
+  const rootBtn = (0,_CustomButton_index_js__WEBPACK_IMPORTED_MODULE_3__.CustomButton)()
+  rootBtn.addEventListener('click', event => _functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.push('/'))
+
   return _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].main({class: 'main-component'},
     (0,_CoolBorder_index_js__WEBPACK_IMPORTED_MODULE_2__.CoolBorder)({tagName: 'h1', class: 'title-border-wrapper'},
       _functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].div({class: 'title'}, 'Some cool title')
@@ -906,6 +1050,12 @@ function Main() {
     CardsContainer(),
 
     TypeSonic(),
+
+    (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(sonicBtn, {class: 'btn'}, 'Go to Sonic'),
+    (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(amyBtn, {class: 'btn'}, 'Go to Amy'),
+    (0,_functional_dom_index_js__WEBPACK_IMPORTED_MODULE_1__.buildElement)(rootBtn, {class: 'btn'}, 'Go to Root'),
+
+    Navigate.component,
   )
 }
 

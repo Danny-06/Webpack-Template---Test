@@ -2,9 +2,32 @@ import mainStyleSheet from './styles/main.css'
 import _, {buildElement as $, buildShadowHostElement as $$} from './functional-dom/index.js'
 import { CoolBorder } from './CoolBorder/index.js'
 import { CustomButton } from './CustomButton/index.js'
+import DOMNavigate, { navigation } from './functional-dom/components/dom-navigate/index.js'
 
 document.adoptedStyleSheets = [mainStyleSheet]
 
+
+const Navigate = DOMNavigate({class: 'navigate-component'}, [
+  {
+    url: '/sonic',
+    component: function Sonic() {
+      return _['sonic-p']({},
+        'Sonic',
+        _.div({class: 'state'}, `State value of this path: ${JSON.stringify(navigation.state)}`)
+      )
+    }
+  },
+  {
+    url: '/amy',
+    component: function Amy() {
+      return _['amy-p']({}, 'Amy')
+    }
+  },
+])
+
+navigation.addEventListener('custom-navigate', event => {
+  Navigate.update()
+})
 
 function App() {
   return _.div({dataset: {id: 'app'}},
@@ -22,6 +45,15 @@ function Aside() {
 }
 
 function Main() {
+  const sonicBtn = CustomButton()
+  sonicBtn.addEventListener('click', event => navigation.push('/sonic', 'Princess Elise'))
+
+  const amyBtn = CustomButton()
+  amyBtn.addEventListener('click', event => navigation.push('/amy'))
+
+  const rootBtn = CustomButton()
+  rootBtn.addEventListener('click', event => navigation.push('/'))
+
   return _.main({class: 'main-component'},
     CoolBorder({tagName: 'h1', class: 'title-border-wrapper'},
       _.div({class: 'title'}, 'Some cool title')
@@ -29,6 +61,12 @@ function Main() {
     CardsContainer(),
 
     TypeSonic(),
+
+    $(sonicBtn, {class: 'btn'}, 'Go to Sonic'),
+    $(amyBtn, {class: 'btn'}, 'Go to Amy'),
+    $(rootBtn, {class: 'btn'}, 'Go to Root'),
+
+    Navigate.component,
   )
 }
 

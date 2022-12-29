@@ -1,15 +1,15 @@
 import { $map, createElement, createElementNS, setChildren, setClasses, setStyleProperties } from './helpers.js'
 
 /**
- * @typedef {string | number | HTMLElement | DocumentFragment} ParamNode
+ * @typedef {string | number | HTMLElement | DocumentFragment} CoreNode
  */
 
 /**
- * @typedef {ParamNode[] | ParamNode[][]} Children
+ * @typedef {CoreNode[] | CoreNode[][]} Children
  */
 
 /**
- * @typedef {(...children: ParamNode[]) => DocumentFragment} DOMMakerProxyFunc
+ * @typedef {(...children: CoreNode[]) => DocumentFragment} DOMMakerProxyFunc
  */
 
 /**
@@ -40,7 +40,7 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 
 /**
  * @typedef {{
- *  $map: (length: number, callback: (index: number) => ParamNode) => ParamNode[]
+ *  $map: (length: number, callback: (index: number) => CoreNode) => CoreNode[]
  * }} DOMMakerMapFunc
  */
 
@@ -155,7 +155,7 @@ export default DOMMaker
  * @template T
  * @param {T extends HTMLElement ? T : never} element 
  * @param {FunctionalDOMProperties} [properties] 
- * @param  {...ParamNode} children 
+ * @param  {...CoreNode} children 
  * @returns {T}
  * 
  * It's similar to `DOMMaker.property()` but instead of  
