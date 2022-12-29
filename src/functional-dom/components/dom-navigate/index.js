@@ -24,7 +24,8 @@ export default function DOMNavigate(options, navigateRoutes) {
       let renderComponent = null
 
       for (const route of navigateRoutes) {
-        if (route.path.startsWith('/') ? rootPath + route.path : route.path === location.pathname) {
+        const path = route.path.startsWith('/') ? rootPath + route.path : route.path
+        if (path === location.pathname) {
           renderComponent = route.component
           break
         }
