@@ -17,12 +17,12 @@ export default {
 
   devServer: {
     static: {
-      directory: resolvePath('dist'),
+      directory: resolvePath('./'),
     },
     port: 8080,
     // Redirect not found routes to index.html
     historyApiFallback: {
-      index: 'index.html'
+      index: './dist/index.html'
     },
     https: false,
   },
