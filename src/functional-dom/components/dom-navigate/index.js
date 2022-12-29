@@ -88,7 +88,7 @@ export const navigation = {
    * @param {History['state']} [state=null] 
    */
   push(url, state = null) {
-    history.pushState(state, '', url.startsWith('/') ? rootPath + url.slice(1) : url)
+    history.pushState(state, '', url.startsWith('/') ? rootPath + url : url)
     dispatchCustomNavigate()
   },
 
