@@ -20,6 +20,10 @@ export default {
       directory: resolvePath('dist'),
     },
     port: 8080,
+    // Redirect not found routes to index.html
+    historyApiFallback: {
+      index: 'index.html'
+    },
     https: false,
   },
 
