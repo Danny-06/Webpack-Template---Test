@@ -11,13 +11,14 @@ export function CustomButton(options, ...children) {
 
   let isPressed = false
 
-  host.addEventListener('pointercancel', event => {
-    isEnd = false
-    isPressed = true
+  // host.addEventListener('pointercancel', event => {
+  //   console.log(event)
+  //   isEnd = false
+  //   isPressed = true
 
-    effect.classList.remove('grow')
-    effect.classList.remove('grow-reversed')
-  })
+  //   effect.classList.remove('grow')
+  //   effect.classList.remove('grow-reversed')
+  // })
 
   host.addEventListener('pointerdown', event => {
     if (event.button !== 0) {
