@@ -6,7 +6,7 @@ import DOMNavigate, { navigation } from './functional-dom/components/dom-navigat
 
 document.adoptedStyleSheets = [mainStyleSheet]
 
-const Navigate = DOMNavigate({class: 'navigate-component'}, [
+const routes = [
   {
     path: '*',
     component: function NotFound() {
@@ -34,7 +34,9 @@ const Navigate = DOMNavigate({class: 'navigate-component'}, [
       return _['amy-p']({}, 'Amy')
     }
   },
-])
+]
+
+const Navigate = DOMNavigate({class: 'navigate-component'}, routes)
 
 navigation.addEventListener('custom-navigate', event => {
   Navigate.update(location.pathname)
