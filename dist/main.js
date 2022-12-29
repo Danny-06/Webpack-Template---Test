@@ -1026,6 +1026,8 @@ __webpack_require__.r(__webpack_exports__);
 document.adoptedStyleSheets = [_styles_main_css__WEBPACK_IMPORTED_MODULE_0__["default"]]
 
 
+_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.setRoot(location.href)
+
 const Navigate = (0,_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__["default"])({class: 'navigate-component'}, [
   {
     path: '/',
@@ -1049,8 +1051,6 @@ const Navigate = (0,_functional_dom_components_dom_navigate_index_js__WEBPACK_IM
     }
   },
 ])
-
-_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.setRoot(location.href)
 
 _functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.addEventListener('custom-navigate', event => {
   Navigate.update()

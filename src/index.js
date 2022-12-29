@@ -7,6 +7,8 @@ import DOMNavigate, { navigation } from './functional-dom/components/dom-navigat
 document.adoptedStyleSheets = [mainStyleSheet]
 
 
+navigation.setRoot(location.href)
+
 const Navigate = DOMNavigate({class: 'navigate-component'}, [
   {
     path: '/',
@@ -30,8 +32,6 @@ const Navigate = DOMNavigate({class: 'navigate-component'}, [
     }
   },
 ])
-
-navigation.setRoot(location.href)
 
 navigation.addEventListener('custom-navigate', event => {
   Navigate.update()
