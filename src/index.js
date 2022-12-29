@@ -6,10 +6,13 @@ import DOMNavigate, { navigation } from './functional-dom/components/dom-navigat
 
 document.adoptedStyleSheets = [mainStyleSheet]
 
-
-// navigation.setRoot(location.href)
-
 const Navigate = DOMNavigate({class: 'navigate-component'}, [
+  {
+    path: '*',
+    component: function NotFound() {
+      return _.div({}, 'NOT FOUND')
+    }
+  },
   {
     path: '/',
     component: function Root() {
@@ -34,7 +37,7 @@ const Navigate = DOMNavigate({class: 'navigate-component'}, [
 ])
 
 navigation.addEventListener('custom-navigate', event => {
-  Navigate.update()
+  Navigate.update(location.pathname)
 })
 
 function App() {
@@ -62,6 +65,9 @@ function Main() {
   const rootBtn = CustomButton()
   rootBtn.addEventListener('click', event => navigation.push('/'))
 
+  const notFoundBtn = CustomButton()
+  notFoundBtn.addEventListener('click', event => navigation.push('/@not-found'))
+
   return _.main({class: 'main-component'},
     CoolBorder({tagName: 'h1', class: 'title-border-wrapper'},
       _.div({class: 'title'}, 'Some cool title')
@@ -73,6 +79,7 @@ function Main() {
     $(sonicBtn, {class: 'btn', style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
     $(amyBtn, {class: 'btn', style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
     $(rootBtn, {class: 'btn', style: {backgroundColor: '#090'}}, 'Go to Root'),
+    $(notFoundBtn, {class: 'btn', style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
 
     Navigate.component,
   )

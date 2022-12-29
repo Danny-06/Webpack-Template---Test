@@ -1,6 +1,5 @@
 import _ from "../../index.js";
-
-let rootPath = '/'
+import { sortWildCardRouteToEnd } from "./utils.js";
 
 /**
  * @typedef NavigateRoute
@@ -17,15 +16,21 @@ let rootPath = '/'
 export default function DOMNavigate(options, navigateRoutes) {
   const component = _['dom-navigate'](options)
 
+  navigateRoutes = sortWildCardRouteToEnd(navigateRoutes)  
+
   return {
     component,
 
-    update() {
+    update(pathname) {
       let renderComponent = null
 
       for (const route of navigateRoutes) {
-        const path = route.path.startsWith('/') ? rootPath + route.path : route.path
-        if (path === location.pathname) {
+        if (route.path === pathname) {
+          renderComponent = route.component
+          break
+        }
+
+        if (route.path === '*') {
           renderComponent = route.component
           break
         }
@@ -62,12 +67,12 @@ window.addEventListener('popstate', event => {
 
 export const navigation = {
 
-  setRoot(url) {
-    const newURL = new URL(url)
-    const root = newURL.pathname.split('/').slice(0, -1).join('/')
+  // setRoot(url) {
+  //   const newURL = new URL(url)
+  //   const root = newURL.pathname.split('/').slice(0, -1).join('/')
 
-    rootPath = root
-  },
+  //   rootPath = root
+  // },
 
   get state() {
     return history.state
@@ -89,7 +94,7 @@ export const navigation = {
    * @param {History['state']} [state=null] 
    */
   push(url, state = null) {
-    history.pushState(state, '', url.startsWith('/') ? rootPath + url : url)
+    history.pushState(state, '', url)
     dispatchCustomNavigate()
   },
 
