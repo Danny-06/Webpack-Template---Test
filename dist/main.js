@@ -897,6 +897,14 @@ window.addEventListener('popstate', event => {
 })
 
 const navigation = {
+  root: '/',
+
+  setRoot(url) {
+    const newURL = new URL(url)
+    const rootPath = newURL.pathname.split('/').slice(0, -1).join('/')
+
+    this.root = rootPath
+  },
 
   get state() {
     return history.state
@@ -1040,6 +1048,8 @@ const Navigate = (0,_functional_dom_components_dom_navigate_index_js__WEBPACK_IM
     }
   },
 ])
+
+_functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.setRoot(location.href)
 
 _functional_dom_components_dom_navigate_index_js__WEBPACK_IMPORTED_MODULE_4__.navigation.addEventListener('custom-navigate', event => {
   Navigate.update()

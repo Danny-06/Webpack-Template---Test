@@ -31,6 +31,8 @@ const Navigate = DOMNavigate({class: 'navigate-component'}, [
   },
 ])
 
+navigation.setRoot(location.href)
+
 navigation.addEventListener('custom-navigate', event => {
   Navigate.update()
 })
