@@ -7,7 +7,7 @@ import DOMNavigate, { navigation } from './functional-dom/components/dom-navigat
 document.adoptedStyleSheets = [mainStyleSheet]
 
 
-navigation.setRoot(location.href)
+// navigation.setRoot(location.href)
 
 const Navigate = DOMNavigate({class: 'navigate-component'}, [
   {
