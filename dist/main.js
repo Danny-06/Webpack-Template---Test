@@ -838,6 +838,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
 
+let rootPath = '/'
 
 /**
  * @typedef NavigateRoute
@@ -897,13 +898,12 @@ window.addEventListener('popstate', event => {
 })
 
 const navigation = {
-  root: '/',
 
   setRoot(url) {
     const newURL = new URL(url)
-    const rootPath = newURL.pathname.split('/').slice(0, -1).join('/')
+    const root = newURL.pathname.split('/').slice(0, -1).join('/')
 
-    this.root = rootPath
+    rootPath = root
   },
 
   get state() {
@@ -926,7 +926,7 @@ const navigation = {
    * @param {History['state']} [state=null] 
    */
   push(url, state = null) {
-    history.pushState(state, '', url)
+    history.pushState(state, '', url.startsWith('/') ? rootPath + url.slice(1) : url)
     dispatchCustomNavigate()
   },
 

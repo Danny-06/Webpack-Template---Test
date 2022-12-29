@@ -1,5 +1,6 @@
 import _ from "../../index.js";
 
+let rootPath = '/'
 
 /**
  * @typedef NavigateRoute
@@ -59,13 +60,12 @@ window.addEventListener('popstate', event => {
 })
 
 export const navigation = {
-  root: '/',
 
   setRoot(url) {
     const newURL = new URL(url)
-    const rootPath = newURL.pathname.split('/').slice(0, -1).join('/')
+    const root = newURL.pathname.split('/').slice(0, -1).join('/')
 
-    this.root = rootPath
+    rootPath = root
   },
 
   get state() {
@@ -88,7 +88,7 @@ export const navigation = {
    * @param {History['state']} [state=null] 
    */
   push(url, state = null) {
-    history.pushState(state, '', url)
+    history.pushState(state, '', url.startsWith('/') ? rootPath + url.slice(1) : url)
     dispatchCustomNavigate()
   },
 
