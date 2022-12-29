@@ -114,7 +114,7 @@ function CardsContainer() {
 
 
 function TypeEffect() {
-  const placeholderForEmptyString = () => _.pre({}, ' ')
+  const placeholderForEmptyString = () => _.pre({attributes: {'aria-hidden': true}}, ' ')
   const component = _['type-effect']({class: 'type-effect-component', style: {lineHeight: '1.3em'}}, placeholderForEmptyString())
 
   let i

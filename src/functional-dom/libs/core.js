@@ -55,12 +55,16 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  */
 
 /**
+ * @typedef {boolean | number | bigint | string | null | undefined} Primitive
+ */
+
+/**
  * @typedef FunctionalDOMProperties
  * @property {string} [id]
  * @property {string | string[]} [class]
- * @property {{[key: string]: string}} [dataset]
- * @property {{[key: string]: string}} [attributes]
- * @property {{[key: string]: string}} [style]
+ * @property {{[key: string]: Primitive}} [dataset]
+ * @property {{[key: string]: Primitive}} [attributes]
+ * @property {{[key: string]: Primitive}} [style]
  */
 
 
@@ -179,6 +183,7 @@ export function buildElement(element, properties = {}, ...children) {
     for (const [property, value] of Object.entries(dataset ?? {})) {
       if (value === undefined) continue
 
+      // @ts-ignore
       element.dataset[property] = value
     }
   }
@@ -192,10 +197,12 @@ export function buildElement(element, properties = {}, ...children) {
       continue
     }
 
+    // @ts-ignore
     element.setAttribute(property, value)
   }
-
+  
   if (style) {
+    // @ts-ignore
     setStyleProperties(element.style, style)
   }
 
@@ -331,33 +338,38 @@ export function buildElementNS(element, properties = {}, ...children) {
   }
 
   if (classes) {
+    // @ts-ignore
     setClasses(element, classes)
   }
-
+  
   if (dataset) {
     for (const [property, value] of Object.entries(dataset ?? {})) {
       if (value === undefined) continue
-
+      
+      // @ts-ignore
       element.dataset[property] = value
     }
   }
-
+  
   for (const [property, value] of Object.entries(attributes ?? {})) {
     if (value === undefined) continue
-
+    
     if (['src', 'href'].includes(property)) {
       element.setAttribute(property, tp.createScriptURL(value))
-
+      
       continue
     }
-
+    
+    // @ts-ignore
     element.setAttribute(property, value)
   }
-
+  
   if (style) {
+    // @ts-ignore
     setStyleProperties(element.style, style)
   }
-
+  
+  // @ts-ignore
   setChildren(element, children)
 
   return element
