@@ -61,7 +61,7 @@ function dispatchCustomNavigate() {
 }
 
 // Fire `custom-navigate` event on `load`
-window.addEventListener('load', event => {
+window.addEventListener('DOMContentLoaded', event => {
   dispatchCustomNavigate()
 }, {once: true})
 
