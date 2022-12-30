@@ -10,7 +10,8 @@ const routes = [
   {
     path: '*',
     component: function NotFound() {
-      return _.div({style: {width: '100%', height: '100%', backgroundColor: '#900', display: 'grid', placeItems: 'center'}}, 'NOT FOUND')
+      const style = {width: '100%', height: '100%', backgroundColor: '#900', display: 'grid', placeItems: 'center'}
+      return _.div({style}, 'NOT FOUND')
     }
   },
   {
