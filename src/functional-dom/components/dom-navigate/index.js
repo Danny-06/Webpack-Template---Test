@@ -149,6 +149,14 @@ export const navigation = {
   },
 
   /**
+   * 
+   * @param {string} value 
+   */
+  hash(value) {
+    location.hash = value
+  },
+
+  /**
    * @template {NavigateEvents} T
    * @param {T} eventType 
    * @param {CallbackListener<T>} callbackListener 
