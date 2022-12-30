@@ -54,21 +54,63 @@ export default function DOMNavigate(navigateRoutes) {
 }
 
 
-
 function dispatchCustomNavigate() {
-  const customNavigate = new CustomEvent('custom-navigate', {detail: null})
+  const init = {detail: {path: location.pathname}}
+
+  const customNavigate = new CustomEvent('custom-navigate', init)
   window.dispatchEvent(customNavigate)
 }
+
+function dispatchCustomHashChange() {
+  const init = {detail: {hash: location.hash}}
+
+  const customHashChange = new CustomEvent('custom-hash-change', init)
+  window.dispatchEvent(customHashChange)
+}
+
 
 // Fire `custom-navigate` event on `DOMContentLoaded`
 window.addEventListener('DOMContentLoaded', event => {
   dispatchCustomNavigate()
+  dispatchCustomHashChange()
 }, {once: true})
 
 
 window.addEventListener('popstate', event => {
   dispatchCustomNavigate()
 })
+
+window.addEventListener('hashchange', event => {
+  dispatchCustomHashChange()
+})
+
+
+
+/**
+ * @typedef {{
+ *  'custom-navigate': CustomNavigateDetail,
+ *  'custom-hash-change': CustomHashChangeDetail
+ * }} NavigateEventsMap
+ */
+
+/**
+ * @typedef {keyof NavigateEventsMap} NavigateEvents
+ */
+
+/**
+ * @typedef CustomNavigateDetail
+ * @property {string} path This is the same as using `window.location.path`
+ */
+
+/**
+ * @typedef CustomHashChangeDetail
+ * @property {string} hash This is the same as using `window.location.hash`
+ */
+
+/**
+ * @template {NavigateEvents} T
+ * @typedef {(event: CustomEvent<NavigateEventsMap[T]>) => void} CallbackListener
+ */
 
 export const navigation = {
 
@@ -83,6 +125,7 @@ export const navigation = {
    */
   replace(url, state = null) {
     history.replaceState(state, '', url)
+
     dispatchCustomNavigate()
   },
 
@@ -93,6 +136,7 @@ export const navigation = {
    */
   push(url, state = null) {
     history.pushState(state, '', url)
+
     dispatchCustomNavigate()
   },
 
@@ -105,9 +149,9 @@ export const navigation = {
   },
 
   /**
-   * 
-   * @param {'custom-navigate'} eventType 
-   * @param {(event: CustomEvent) => void} callbackListener 
+   * @template {NavigateEvents} T
+   * @param {T} eventType 
+   * @param {CallbackListener<T>} callbackListener 
    */
   addEventListener(eventType, callbackListener) {
     window.addEventListener(eventType, callbackListener)

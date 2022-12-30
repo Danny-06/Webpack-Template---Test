@@ -38,7 +38,7 @@ const routes = [
 const Navigate = DOMNavigate(routes)
 
 navigation.addEventListener('custom-navigate', event => {
-  Navigate.update(location.pathname)
+  Navigate.update(event.detail.path)
 })
 
 function App() {
