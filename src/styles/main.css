@@ -158,6 +158,9 @@
 .navigate-component {
   height: 180px;
 
+  display: flex;
+  flex-direction: column;
+
   padding: 1rem;
   border: solid 2px #fff;
 
