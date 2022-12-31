@@ -16,6 +16,10 @@ export default {
   mode: Modes.NONE,
   devtool: 'inline-source-map',
 
+  experiments: {
+    topLevelAwait: false,
+  },
+
   devServer: {
     static: {
       directory: resolvePath('./dist'),
