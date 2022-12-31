@@ -5,7 +5,6 @@
 // https://github.com/postcss/postcss-scss
 
 module.exports = {
-  syntax: 'postcss-scss',
   plugins: [
     'postcss-mixins',
     'postcss-for',
