@@ -98,12 +98,13 @@ const DOMMaker = new Proxy(function() {}, {
    * 
    * @param {*} target 
    * @param {*} thisArg 
-   * @param {HTMLElement[]} argArray 
+   * @param {CoreNode[]} argArray 
    * @returns {DocumentFragment}
    */
   apply: (target, thisArg, argArray) => {
     const documentFragment = new DocumentFragment()
 
+    // @ts-ignore
     documentFragment.append(...argArray.filter(node => node != null))
 
     return documentFragment
@@ -216,7 +217,7 @@ export function buildElement(element, properties = {}, ...children) {
  * @param {T extends HTMLElement ? T : never} element 
  * @param {FunctionalDOMProperties=} properties 
  * @param {ShadowDOMOptions=} shadowDOMOptions
- * @param  {...HTMLElement} children 
+ * @param  {...CoreNode} children 
  * @returns {T}
  * 
  * It's similar to `buildElement` but it also accepts
