@@ -1,10 +1,6 @@
 import _, { buildElement as $, buildShadowHostElement as $$ } from '../functional-dom/index.js'
 import mainStyleSheet from './main.css'
 
-
-let isEnd = false
-let isPressed = false
-
 /**
  * 
  * @param {import('../functional-dom/libs/core.js').FunctionalDOMProperties} [options] 
@@ -16,6 +12,10 @@ export function CustomButton(options, ...children) {
   host.role = 'button'
 
   const effect = _.div()
+
+  
+  let isPressed = false
+  let isEnd = false
 
   host.addEventListener('pointerdown', event => {
     if (event.button !== 0) {
