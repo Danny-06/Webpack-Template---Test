@@ -54,7 +54,10 @@ const config = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: ['postcss-variables']
+                plugins: [
+                  'postcss-simple-vars',
+                  'postcss-conditionals',
+                ]
               }
             }
           },
