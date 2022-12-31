@@ -1,24 +1,16 @@
 import _, { buildElement as $, buildShadowHostElement as $$ } from '../functional-dom/index.js'
 import mainStyleSheet from './main.css'
 
-export function CustomButton(options, ...children) {
-  const effect = _.div()
 
+let isEnd = false
+let isPressed = false
+
+
+export function CustomButton(options, ...children) {
   const host = _['custom-button']()
   host.role = 'button'
 
-  let isEnd = false
-
-  let isPressed = false
-
-  // host.addEventListener('pointercancel', event => {
-  //   console.log(event)
-  //   isEnd = false
-  //   isPressed = true
-
-  //   effect.classList.remove('grow')
-  //   effect.classList.remove('grow-reversed')
-  // })
+  const effect = _.div()
 
   host.addEventListener('pointerdown', event => {
     if (event.button !== 0) {
