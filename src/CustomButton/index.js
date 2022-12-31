@@ -5,7 +5,12 @@ import mainStyleSheet from './main.css'
 let isEnd = false
 let isPressed = false
 
-
+/**
+ * 
+ * @param {import('../functional-dom/libs/core.js').FunctionalDOMProperties} [options] 
+ * @param  {...import('../functional-dom/libs/core.js').CoreNode} children 
+ * @returns 
+ */
 export function CustomButton(options, ...children) {
   const host = _['custom-button']()
   host.role = 'button'
