@@ -88,8 +88,8 @@ window.addEventListener('hashchange', event => {
 
 /**
  * @typedef {{
- *  'custom-navigate': CustomNavigateDetail,
- *  'custom-hash-change': CustomHashChangeDetail
+ *  'custom-navigate': CustomEvent<CustomNavigateDetail>,
+ *  'custom-hash-change': CustomEvent<CustomHashChangeDetail>
  * }} NavigateEventsMap
  */
 
@@ -99,7 +99,7 @@ window.addEventListener('hashchange', event => {
 
 /**
  * @typedef CustomNavigateDetail
- * @property {string} path This is the same as using `window.location.path`
+ * @property {string} path This is the same as using `window.location.pathname`
  */
 
 /**
@@ -109,7 +109,7 @@ window.addEventListener('hashchange', event => {
 
 /**
  * @template {NavigateEvents} T
- * @typedef {(event: CustomEvent<NavigateEventsMap[T]>) => void} CallbackListener
+ * @typedef {(event: NavigateEventsMap[T]) => void} CallbackListener
  */
 
 export const navigation = {
