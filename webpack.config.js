@@ -12,9 +12,10 @@ const Modes = {
 }
 
 
-export default {
-  mode: Modes.NONE,
-  devtool: 'inline-source-map',
+const config = {
+  mode: Modes.PRODUCTION,
+  devtool: 'source-map',
+  // devtool: 'inline-source-map',
 
   experiments: {
     topLevelAwait: false,
@@ -32,14 +33,8 @@ export default {
     https: false,
   },
 
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: resolvePath('dist')
-  },
-
   resolveLoader: {
-    modules: ['node_modules', resolvePath('custom-webpack/loaders')]
+    modules: ['node_modules', 'custom-webpack/loaders']
   },
   module: {
     rules: [
@@ -65,3 +60,17 @@ export default {
     ]
   }
 }
+
+const entries = [
+  {
+    ...config,
+
+    entry: './src/index.js',
+    output: {
+      filename: 'main.js',
+      path: resolvePath('./dist')
+    },
+  }
+]
+
+export default entries
