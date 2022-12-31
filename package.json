@@ -29,6 +29,7 @@
     "postcss-mixins": "^9.0.4",
     "postcss-nested": "^6.0.0",
     "postcss-scss": "^4.0.6",
+    "postcss-variables": "^1.1.1",
     "webpack-dev-server": "^4.11.1"
   }
 }
