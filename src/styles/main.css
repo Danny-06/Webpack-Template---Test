@@ -1,8 +1,16 @@
 @charset "UTF-8";
 
+
 @custom-media --custom-media (width <= 700px);
 
 @custom-media --mobile-like (width <= 600px);
+
+$variable: --elise;
+
+:root {
+  --amy: 1;
+  --sonic: "$variable";
+}
 
 [data-id="app-content"] {
   display: grid;
@@ -18,15 +26,16 @@
   }
 }
 
-@each $value in sonic, tails, knuckles {
+@each $value, $i in (sonic, tails, knuckles) {
   html {
-    --width: $(value)-px;
+    --each: $(value)-px;
+    --i: $(i);
   }
 }
 
-@for $i from 1 to 3 {
+@for $i from 1 to 5 {
   html {
-    --width: $(i)px;
+    --for: $(i)px;
   }
 }
 
