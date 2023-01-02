@@ -50,17 +50,6 @@ const config = {
         test: /\.css/,
         use: [
           {loader: 'constructed-stylesheets-loader.cjs'},
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  'postcss-simple-vars',
-                  'postcss-conditionals',
-                ]
-              }
-            }
-          },
           {loader: 'postcss-loader'},
         ]
       },

@@ -7,8 +7,15 @@
 // https://github.com/nathanhood/postcss-variables
 // https://github.com/andyjansson/postcss-conditionals
 
+// Fork of `postcss-simple-vars` to fix issue with `@each`
+// @ts-ignore
+const simpleVariables = require('./custom-postcss/postcss-simple-vars/index.js')
+
 module.exports = {
   plugins: [
+    // 'postcss-simple-vars',
+    simpleVariables,
+    'postcss-conditionals',
     'postcss-mixins',
     'postcss-for',
     'postcss-each',

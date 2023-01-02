@@ -26,7 +26,9 @@ $variable: --elise;
   }
 }
 
-@each $value, $i in (sonic, tails, knuckles) {
+$list: (sonic, tails, knuckles);
+
+@each $value, $i in $list {
   html {
     --each: $(value)-px;
     --i: $(i);
