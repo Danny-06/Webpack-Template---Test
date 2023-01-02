@@ -13,7 +13,6 @@ const simpleVariables = require('./custom-postcss/postcss-simple-vars/index.js')
 
 module.exports = {
   plugins: [
-    // 'postcss-simple-vars',
     simpleVariables,
     'postcss-conditionals',
     'postcss-mixins',
