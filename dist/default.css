@@ -10,6 +10,11 @@
   box-sizing: inherit;
 }
 
+*:focus-visible {
+  outline: solid 3px #95bfff;
+  outline-offset: 3px;
+}
+
 :where(:not(:defined)) {
   display: block;
 }
