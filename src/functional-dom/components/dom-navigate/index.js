@@ -10,7 +10,7 @@ import { sortWildCardRouteToEnd } from "./utils.js";
 /**
  * @typedef DOMNavigateObject
  * @property {HTMLElement} component
- * @property {(pathname: string) => void} update
+ * @property {(pathname: string) => void} update Update component based on the provided pathname
  */
 
 /**
@@ -21,7 +21,7 @@ import { sortWildCardRouteToEnd } from "./utils.js";
 export default function DOMNavigate(navigateRoutes) {
   const component = _['dom-navigate']()
 
-  navigateRoutes = sortWildCardRouteToEnd(navigateRoutes)  
+  const sortedRoutes = sortWildCardRouteToEnd(navigateRoutes)  
 
   return {
     component,
@@ -29,7 +29,7 @@ export default function DOMNavigate(navigateRoutes) {
     update(pathname) {
       let renderComponent = null
 
-      for (const route of navigateRoutes) {
+      for (const route of sortedRoutes) {
         if (route.path === pathname) {
           renderComponent = route.component
           break
