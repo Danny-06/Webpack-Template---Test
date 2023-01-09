@@ -3,6 +3,7 @@ import { navigation } from "./navigation.js"
 
 const linkNavigateSymbol = Symbol('link-navigate')
 const linkStateSymbol = Symbol('state')
+const linkMethodSymbol = Symbol('method')
 
 /**
  * @typedef LinkPropertiesDef
@@ -36,6 +37,7 @@ export function Link(options, ...children) {
 
   if (typeof method === 'string') {
     anchor.dataset.method = method
+    anchor[linkMethodSymbol] = method
   }
 
   return anchor
@@ -60,7 +62,7 @@ window.addEventListener('click', event => {
 
   const state = anchor[linkStateSymbol]
 
-  switch (anchor.dataset.method) {
+  switch (anchor[linkMethodSymbol]) {
     case 'replace':
       navigation.replace(url, state)
     break
