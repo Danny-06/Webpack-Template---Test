@@ -54,7 +54,7 @@ function App() {
 
 function Aside() {
   return _.aside({class: 'aside-component'},
-    _.$map(6, index => _.div({class: 'item'}, index + 1))
+    _.$map(6, index => Link({class: 'item', href: `#index${index + 1}`}, index + 1))
   )
 }
 
