@@ -160,9 +160,14 @@ export const navigation = {
    * @template {NavigateEvents} T
    * @param {T} eventType 
    * @param {CallbackListener<T>} callbackListener 
+   * @returns {() => void} Function to clean up the listener
    */
   addEventListener(eventType, callbackListener) {
     window.addEventListener(eventType, callbackListener)
+
+    return () => {
+      window.removeEventListener(eventType, callbackListener)
+    }
   }
 
 }
