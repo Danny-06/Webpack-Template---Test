@@ -2,7 +2,9 @@ import mainStyleSheet from './styles/main.css'
 import _, {buildElement as $, buildShadowHostElement as $$} from './functional-dom/index.js'
 import { CoolBorder } from './CoolBorder/index.js'
 import { CustomButton } from './CustomButton/index.js'
-import DOMNavigate, { navigation } from './functional-dom/components/dom-navigate/index.js'
+import DOMNavigate from './functional-dom/components/dom-navigate/index.js'
+import { navigation } from './functional-dom/components/dom-navigate/navigation.js'
+import { Link } from './functional-dom/components/dom-navigate/Link.js'
 
 document.adoptedStyleSheets = [mainStyleSheet]
 
@@ -57,18 +59,6 @@ function Aside() {
 }
 
 function Main() {
-  const sonicBtn = CustomButton()
-  sonicBtn.addEventListener('click', event => navigation.push('/sonic', 'Princess Elise'))
-
-  const amyBtn = CustomButton()
-  amyBtn.addEventListener('click', event => navigation.push('/amy'))
-
-  const rootBtn = CustomButton()
-  rootBtn.addEventListener('click', event => navigation.push('/'))
-
-  const notFoundBtn = CustomButton()
-  notFoundBtn.addEventListener('click', event => navigation.push('/@not-found'))
-
   return _.main({class: 'main-component'},
     CoolBorder({tagName: 'h1', class: 'title-border-wrapper'},
       _.div({class: 'title'}, 'Some cool title')
@@ -78,10 +68,18 @@ function Main() {
 
     TypeSonic(),
 
-    $(sonicBtn, {class: 'btn', style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
-    $(amyBtn, {class: 'btn', style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
-    $(rootBtn, {class: 'btn', style: {backgroundColor: '#090'}}, 'Go to Root'),
-    $(notFoundBtn, {class: 'btn', style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
+    Link({href: '/sonic', state: 'Princess Elise'},
+      CustomButton({class: 'btn', style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
+    ),
+    Link({href: '/amy'},
+      CustomButton({class: 'btn', style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
+    ),
+    Link({href: '/'},
+      CustomButton({class: 'btn', style: {backgroundColor: '#090'}}, 'Go to Root'),
+    ),
+    Link({href: '/@not-found'},
+      CustomButton({class: 'btn', style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
+    ),
   )
 }
 
