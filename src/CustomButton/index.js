@@ -60,6 +60,8 @@ export function CustomButton(options, ...children) {
       }
     }
 
+    window.addEventListener('dragend', pointerUpListener, {capture: true, once: true})
+
     if (event.pointerType === 'touch') {
       window.addEventListener('touchend', pointerUpListener, {capture: true, once: true})
     } else {
