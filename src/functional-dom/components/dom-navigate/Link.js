@@ -71,7 +71,7 @@ window.addEventListener('click', event => {
 
     default:
       // If the url contains a hash then replace the current history entry else add a new entry 
-      if (url.startsWith('#')) {
+      if (url.includes('#')) {
         navigation.replace(url, state)
       } else {
         navigation.push(url, state)
