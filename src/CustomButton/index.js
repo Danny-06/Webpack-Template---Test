@@ -40,7 +40,12 @@ export function CustomButton(options, ...children) {
 
     effect.style.setProperty('--size', `${maxSize}px`)
 
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
     const pointerUpListener = event => {
+      abortController.abort()
+
       isPressed = false
 
       if (isEnd) {
@@ -60,12 +65,12 @@ export function CustomButton(options, ...children) {
       }
     }
 
-    window.addEventListener('dragend', pointerUpListener, {capture: true, once: true})
+    window.addEventListener('dragend', pointerUpListener, {capture: true, once: true, signal})
 
     if (event.pointerType === 'touch') {
-      window.addEventListener('touchend', pointerUpListener, {capture: true, once: true})
+      window.addEventListener('touchend', pointerUpListener, {capture: true, once: true, signal})
     } else {
-      window.addEventListener('pointerup', pointerUpListener, {capture: true, once: true})
+      window.addEventListener('pointerup', pointerUpListener, {capture: true, once: true, signal})
     }
   })
 
