@@ -124,7 +124,7 @@ const DOMMaker = new Proxy(function() {}, {
     const documentFragment = new DocumentFragment()
 
     // @ts-ignore
-    documentFragment.append(...argArray.filter(node => node != null))
+    documentFragment.append(...argArray.flat(Infinity).filter(node => node != null))
 
     return documentFragment
   },
