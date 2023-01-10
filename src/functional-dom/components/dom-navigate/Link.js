@@ -19,7 +19,7 @@ const linkMethodSymbol = Symbol('method')
 /**
  * Anchor tag to do navigation using the history API
  * @param {LinkProperties} [options] 
- * @param  {import("../../libs/core.js").Children} children 
+ * @param  {...import("../../libs/core.js").Children} children 
  * @returns {HTMLAnchorElement}
  */
 export function Link(options, ...children) {

@@ -5,16 +5,16 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  */
 
 /**
- * @typedef {CoreNode[] | CoreNode[][]} Children
+ * @typedef {CoreNode | CoreNode[]} Children
  */
 
 /**
- * @typedef {(...children: CoreNode[]) => DocumentFragment} DOMMakerProxyFunc
+ * @typedef {(...children: Children[]) => DocumentFragment} DOMMakerProxyFunc
  */
 
 /**
  * @typedef {{
- *  [key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, ...children: Children) => HTMLElementTagNameMap[key]
+ *  [key in keyof HTMLElementTagNameMap]: (properties?: FunctionalDOMProperties, ...children: Children[]) => HTMLElementTagNameMap[key]
  * }} DOMMakerHTMLProxyProperties
  */
 
@@ -28,13 +28,13 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 
 /**
  * @typedef {{
- *  $: {[key in keyof HTMLElementTagNameMap]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children) => HTMLElementTagNameMap[key]}
+ *  $: {[key in keyof HTMLElementTagNameMap]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children[]) => HTMLElementTagNameMap[key]}
  * }} DOMMakerShadowDOMHTMLProxyProperties
  */
 
 /**
  * @typedef {{
- *  $: {[key: string]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children) => HTMLElement}
+ *  $: {[key: string]: (properties: FunctionalDOMProperties, shadowDOMOptions: ShadowDOMOptions, ...children: Children[]) => HTMLElement}
  * }} DOMMakerShadowDOMProxyProperties
  */
 
@@ -46,7 +46,7 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 
 /**
 * @typedef {{
-*  [key: string]: (properties?: FunctionalDOMProperties, ...children: Children) => HTMLElement
+*  [key: string]: (properties?: FunctionalDOMProperties, ...children: Children[]) => HTMLElement
 * }} DOMMakerProxyProperties
 */
 
