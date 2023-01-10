@@ -13,7 +13,6 @@ export function CustomButton(options, ...children) {
 
   const effect = _.div()
 
-  
   let isPressed = false
   let isEnd = false
 

@@ -203,7 +203,13 @@ export function buildElement(element, properties = {}, ...children) {
   }
 
   for (const [property, value] of Object.entries(attributes ?? {})) {
-    if (value === undefined) continue
+    if (value === null) {
+      element.removeAttribute(property)
+    }
+
+    if (value == null) {
+      continue
+    }
 
     if (['src', 'href'].includes(property)) {
       element.setAttribute(property, tp.createScriptURL(value))

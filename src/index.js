@@ -69,16 +69,16 @@ function Main() {
     TypeSonic(),
 
     Link({href: '/sonic', state: 'Princess Elise'},
-      CustomButton({class: 'btn', style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
+      CustomButton({class: 'btn', attributes: {role: null}, style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
     ),
     Link({href: '/amy'},
-      CustomButton({class: 'btn', style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
+      CustomButton({class: 'btn', attributes: {role: null}, style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
     ),
     Link({href: '/'},
-      CustomButton({class: 'btn', style: {backgroundColor: '#090'}}, 'Go to Root'),
+      CustomButton({class: 'btn', attributes: {role: null}, style: {backgroundColor: '#090'}}, 'Go to Root'),
     ),
     Link({href: '/@not-found'},
-      CustomButton({class: 'btn', style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
+      CustomButton({class: 'btn', attributes: {role: null}, style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
     ),
   )
 }
