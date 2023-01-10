@@ -4,7 +4,7 @@ import mainStyleSheet from './main.css'
 /**
  * 
  * @param {import('../functional-dom/libs/core.js').FunctionalDOMProperties} [options] 
- * @param  {...import('../functional-dom/libs/core.js').CoreNode} children 
+ * @param  {...import('../functional-dom/libs/core.js').Children} children 
  * @returns 
  */
 export function CustomButton(options, ...children) {

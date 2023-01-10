@@ -230,7 +230,7 @@ export function buildElement(element, properties = {}, ...children) {
  * @param {T extends HTMLElement ? T : never} element 
  * @param {FunctionalDOMProperties=} properties 
  * @param {ShadowDOMOptions=} shadowDOMOptions
- * @param  {...CoreNode} children 
+ * @param  {...Children} children 
  * @returns {T}
  * 
  * It's similar to `buildElement` but it also accepts
