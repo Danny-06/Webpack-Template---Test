@@ -4,8 +4,21 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  * @typedef {string | number | HTMLElement | DocumentFragment} CoreNode
  */
 
+
+//https://github.com/microsoft/TypeScript/issues/46369#issuecomment-1336452582
+
 /**
- * @typedef {CoreNode | CoreNode[]} Children
+ * @template T
+ * @typedef {Circular<T>[]} CircularArray
+ */
+
+/**
+ * @template T
+ * @typedef {CircularArray<T>} Circular
+ */
+
+/**
+ * @typedef {CoreNode | CircularArray<CoreNode>} Children
  */
 
 /**
@@ -40,7 +53,7 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 
 /**
  * @typedef {{
- *  $map: (length: number, callback: (index: number) => CoreNode) => CoreNode[]
+ *  $map: (length: number, callback: (index: number) => CoreNode) => Children
  * }} DOMMakerMapFunc
  */
 
@@ -160,7 +173,7 @@ export default DOMMaker
  * @template T
  * @param {T extends HTMLElement ? T : never} element 
  * @param {FunctionalDOMProperties} [properties] 
- * @param  {...CoreNode} children 
+ * @param  {...Children} children 
  * @returns {T}
  * 
  * It's similar to `DOMMaker.property()` but instead of  

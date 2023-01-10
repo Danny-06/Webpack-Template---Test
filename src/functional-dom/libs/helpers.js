@@ -45,7 +45,7 @@ export function setClasses(element, classes) {
 /**
  * 
  * @param {HTMLElement} element 
- * @param {import("./core.js").Children} children 
+ * @param {import("./core.js").Children[]} children 
  */
 export function setChildren(element, children) {
   // @ts-ignore
