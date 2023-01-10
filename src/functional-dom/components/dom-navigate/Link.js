@@ -7,9 +7,9 @@ const linkMethodSymbol = Symbol('method')
 
 /**
  * @typedef LinkPropertiesDef
- * @property {string} [href]
- * @property {History['state']} [state]
- * @property {'push' | 'replace'} [method]
+ * @property {string} [href] Value for the `href` attribute of the `HTMLAnchorElement`
+ * @property {History['state']} [state] The state value to store in `History.state`
+ * @property {'push' | 'replace'} [method] The navigation method to use. If unspecified it will be `push` for normal urls but for urls that contains a hash (`#`) `replace` will be used.
  */
 
 /**
