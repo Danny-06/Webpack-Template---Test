@@ -8,6 +8,8 @@ import { Link } from './functional-dom/components/dom-navigate/Link.js'
 
 document.adoptedStyleSheets = [mainStyleSheet]
 
+
+/**@type {import('./functional-dom/components/dom-navigate/index.js').NavigateRoute[]} */
 const routes = [
   {
     path: '*',
@@ -15,6 +17,10 @@ const routes = [
       const style = {width: '100%', height: '100%', backgroundColor: '#900', display: 'grid', placeItems: 'center'}
       return _.div({style}, 'NOT FOUND')
     }
+  },
+  {
+    path: '/index.html',
+    redirect: '/'
   },
   {
     path: '/',
@@ -33,7 +39,7 @@ const routes = [
   },
   {
     path: '/amy',
-    component: CardsContainer,
+    component: CardsContainer
   },
 ]
 

@@ -1,10 +1,23 @@
 import _ from "../../index.js";
+import navigation from "./navigation.js";
 import { sortWildCardRouteToEnd } from "./utils.js";
 
 /**
- * @typedef NavigateRoute
+ * @typedef NavigateRouteComponent
  * @property {string} path
  * @property {() => import("../../libs/core.js").CoreNode} component
+ * @property {never} [redirect]
+ */
+
+/**
+ * @typedef NavigateRouteRedirect
+ * @property {string} path
+ * @property {never} [component]
+ * @property {string} redirect
+ */
+
+/**
+ * @typedef {NavigateRouteComponent | NavigateRouteRedirect} NavigateRoute
  */
 
 /**
@@ -27,28 +40,40 @@ export default function DOMNavigate(navigateRoutes) {
     component,
 
     update(pathname) {
-      let renderComponent = null
+      let renderComponentFunc = null
 
       for (const route of sortedRoutes) {
         if (route.path === pathname) {
-          renderComponent = route.component
+          if ('redirect' in route) {
+            navigation.replace(route.redirect)
+            return
+          }
+
+          renderComponentFunc = route.component
           break
         }
 
         if (route.path === '*') {
-          renderComponent = route.component
+          if ('redirect' in route) {
+            navigation.replace(route.redirect)
+            return
+          }
+
+          renderComponentFunc = route.component
           break
         }
       }
 
       component.replaceChildren()
 
-      if (typeof renderComponent !== 'function') {
+      if (typeof renderComponentFunc !== 'function') {
         return
       }
 
+      const renderComponent = renderComponentFunc()
+
       // @ts-ignore
-      component.append(renderComponent())
+      component.append(renderComponent)
     }
   }
 }
