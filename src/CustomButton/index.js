@@ -2,14 +2,48 @@ import _, { buildElement as $, buildShadowHostElement as $$ } from '../functiona
 import mainStyleSheet from './main.css'
 
 /**
+ * @typedef CustomButtonPropertiesDef
+ * @property {boolean} [noBtn=false] Remove button role and functionality if set to `true`
+ */
+
+/**
+ * @typedef {import('../functional-dom/libs/core.js').FunctionalDOMProperties & CustomButtonPropertiesDef} CustomButtonProperties
+ */
+
+/**
  * 
- * @param {import('../functional-dom/libs/core.js').FunctionalDOMProperties} [options] 
+ * @param {CustomButtonProperties} [options] 
  * @param  {...import('../functional-dom/libs/core.js').Children} children 
  * @returns 
  */
 export function CustomButton(options, ...children) {
+  const {noBtn} = options ?? {}
+
   const host = _['custom-button']()
-  host.role = 'button'
+
+  // If `noBtn` is not specified, add button role and functionality
+  if (!noBtn) {
+    host.role = 'button'
+    host.tabIndex = 0
+
+    // Add support for `Space` key
+    host.addEventListener('keyup', event => {
+      if (event.code !== 'Space') {
+        return
+      }
+
+      host.dispatchEvent(new Event('click'))
+    })
+
+    // Add support for `Enter` key
+    host.addEventListener('keydown', event => {
+      if (event.code !== 'Enter') {
+        return
+      }
+
+      host.dispatchEvent(new Event('click'))
+    })
+  }
 
   const effect = _.div()
 
