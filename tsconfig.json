@@ -9,6 +9,6 @@
     "checkJs": true,
     "allowSyntheticDefaultImports": true,
     "module": "ESNext",
-    "moduleResolution": "Node"
+    // "moduleResolution": "Node"
   }
 }
