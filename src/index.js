@@ -69,16 +69,16 @@ function Main() {
     TypeSonic(),
 
     Link({href: '/sonic', state: 'Princess Elise'},
-      CustomButton({class: 'btn', noBtn: true, style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
+      CustomButton({noBtn: true, style: {backgroundColor: '#04a'}}, 'Go to Sonic'),
     ),
     Link({href: '/amy'},
-      CustomButton({class: 'btn', noBtn: true, style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
+      CustomButton({noBtn: true, style: {backgroundColor: '#b4b'}}, 'Go to Amy'),
     ),
     Link({href: '/'},
-      CustomButton({class: 'btn', noBtn: true, style: {backgroundColor: '#090'}}, 'Go to Root'),
+      CustomButton({noBtn: true, style: {backgroundColor: '#090'}}, 'Go to Root'),
     ),
     Link({href: '/@not-found'},
-      CustomButton({class: 'btn', noBtn: true, style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
+      CustomButton({noBtn: true, style: {backgroundColor: '#222'}}, 'Go to any Not Found'),
     ),
   )
 }
@@ -95,7 +95,7 @@ function TypeSonic() {
   return _(
     $(typeEffect.component, {class: 'type-effect-component'}),
     $(btn,
-      {class: 'btn', style: {alignSelf: 'flex-start'}},
+      {style: {alignSelf: 'flex-start'}},
       'Click Me'
     ),
   )
