@@ -11,11 +11,19 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  */
 
 /**
- * @typedef {Children[]} ChildrenArray
+ * @template T
+ * @typedef {T | AuxNestedArray<T>} ValueOrNestedArrayValue
  */
 
 /**
- * @typedef {ValueOrArray<CoreNode> | ChildrenArray} Children
+ * Auxiliar type not meant for general use
+ * @template T
+ * @typedef {ValueOrNestedArrayValue<T>[]} AuxNestedArray
+ */
+
+
+/**
+ * @typedef {ValueOrNestedArrayValue<CoreNode>} Children
  */
 
 
