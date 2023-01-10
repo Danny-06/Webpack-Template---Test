@@ -15,7 +15,7 @@ import stylesheet from './main.css'
 /**
  * @template T
  * @param {CoolBorderOptions<T>} options
- * @param  {...HTMLElement} children 
+ * @param  {...import('../functional-dom/libs/core.js').Children} children 
  * @returns {T extends keyof HTMLElementTagNameMap ? HTMLElementTagNameMap[T] : HTMLElement}
  */
 export function CoolBorder(options, ...children) {
@@ -38,5 +38,6 @@ export function CoolBorder(options, ...children) {
     children: [shadowRootContent]
   })
 
+  // @ts-ignore
   return $(wrapper, options, ...children)
 }
