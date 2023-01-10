@@ -138,7 +138,7 @@ function TypeEffect() {
       component.innerHTML = ''
       component.append(placeholderForEmptyString())
 
-      setTimeout(anim, delay, ...arguments)
+      timeoutAnimation = setTimeout(anim, delay, ...arguments)
     }
   }
 }
