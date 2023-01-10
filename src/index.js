@@ -3,7 +3,7 @@ import _, {buildElement as $, buildShadowHostElement as $$} from './functional-d
 import { CoolBorder } from './CoolBorder/index.js'
 import { CustomButton } from './CustomButton/index.js'
 import DOMNavigate from './functional-dom/components/dom-navigate/index.js'
-import { navigation } from './functional-dom/components/dom-navigate/navigation.js'
+import navigation from './functional-dom/components/dom-navigate/navigation.js'
 import { Link } from './functional-dom/components/dom-navigate/Link.js'
 
 document.adoptedStyleSheets = [mainStyleSheet]

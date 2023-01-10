@@ -1,35 +1,3 @@
-function dispatchCustomNavigate() {
-  const init = {detail: {path: location.pathname}}
-
-  const customNavigate = new CustomEvent('custom-navigate', init)
-  window.dispatchEvent(customNavigate)
-}
-
-function dispatchCustomHashChange() {
-  const init = {detail: {hash: location.hash}}
-
-  const customHashChange = new CustomEvent('custom-hash-change', init)
-  window.dispatchEvent(customHashChange)
-}
-
-
-// Fire `custom-navigate` event on `DOMContentLoaded`
-window.addEventListener('DOMContentLoaded', event => {
-  dispatchCustomNavigate()
-  dispatchCustomHashChange()
-}, {once: true})
-
-
-window.addEventListener('popstate', event => {
-  dispatchCustomNavigate()
-})
-
-window.addEventListener('hashchange', event => {
-  dispatchCustomHashChange()
-})
-
-
-
 /**
  * @typedef {{
  *  'custom-navigate': CustomEvent<CustomNavigateDetail>,
@@ -56,7 +24,7 @@ window.addEventListener('hashchange', event => {
  * @typedef {(event: NavigateEventsMap[T]) => void} CallbackListener
  */
 
-export const navigation = {
+const navigation = {
 
   get state() {
     return history.state
@@ -115,3 +83,36 @@ export const navigation = {
   }
 
 }
+
+export default navigation
+
+
+function dispatchCustomNavigate() {
+  const init = {detail: {path: location.pathname}}
+
+  const customNavigate = new CustomEvent('custom-navigate', init)
+  window.dispatchEvent(customNavigate)
+}
+
+function dispatchCustomHashChange() {
+  const init = {detail: {hash: location.hash}}
+
+  const customHashChange = new CustomEvent('custom-hash-change', init)
+  window.dispatchEvent(customHashChange)
+}
+
+
+// Fire `custom-navigate` event on `DOMContentLoaded`
+window.addEventListener('DOMContentLoaded', event => {
+  dispatchCustomNavigate()
+  dispatchCustomHashChange()
+}, {once: true})
+
+
+window.addEventListener('popstate', event => {
+  dispatchCustomNavigate()
+})
+
+window.addEventListener('hashchange', event => {
+  dispatchCustomHashChange()
+})

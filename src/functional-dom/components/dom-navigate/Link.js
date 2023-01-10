@@ -1,5 +1,5 @@
 import _ from "../../index.js"
-import { navigation } from "./navigation.js"
+import navigation from "./navigation.js"
 
 const linkNavigateSymbol = Symbol('link-navigate')
 const linkStateSymbol = Symbol('state')
