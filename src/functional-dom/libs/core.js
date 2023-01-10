@@ -5,21 +5,19 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
  */
 
 
-//https://github.com/microsoft/TypeScript/issues/46369#issuecomment-1336452582
-
 /**
  * @template T
- * @typedef {Circular<T>[]} CircularArray
+ * @typedef {T | T[]} ValueOrArray
  */
 
 /**
- * @template T
- * @typedef {CircularArray<T>} Circular
+ * @typedef {Children[]} ChildrenArray
  */
 
 /**
- * @typedef {CoreNode | CircularArray<CoreNode>} Children
+ * @typedef {ValueOrArray<CoreNode> | ChildrenArray} Children
  */
+
 
 /**
  * @typedef {(...children: Children[]) => DocumentFragment} DOMMakerProxyFunc
@@ -34,7 +32,7 @@ import { $map, createElement, createElementNS, setChildren, setClasses, setStyle
 /**
  * @typedef ShadowDOMOptions
  * @property {ShadowRootInit} [init]
- * @property {ShadowRootMode} [mode=open]
+ * @property {ShadowRootMode} [mode="open"]
  * @property {CSSStyleSheet[]} [adoptedStyleSheets=[]]
  * @property {HTMLElement[]} [children]
  */
