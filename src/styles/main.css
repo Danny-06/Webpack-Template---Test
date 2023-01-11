@@ -50,7 +50,7 @@ $variable: --elise;
 
   overflow: auto;
 
-  @mixin media (max-width: 600px) {
+  @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
 }
@@ -76,7 +76,7 @@ html {
   & > body {
     background-color: #000;
 
-    @mixin media (--custom-media) {
+    @media (--custom-media) {
       background-color: #111;
     }
   }
@@ -98,7 +98,7 @@ html {
 
   overflow: auto;
 
-  @mixin media (--mobile-like) {
+  @media (--mobile-like) {
     display: none;
   }
 
@@ -135,7 +135,7 @@ html {
 
   overflow: auto;
 
-  @mixin media (--mobile-like) {
+  @media (--mobile-like) {
     grid-column: 1 / span 1;
   }
 
