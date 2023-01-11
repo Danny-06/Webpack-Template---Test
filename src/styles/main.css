@@ -49,9 +49,27 @@ $variable: --elise;
   padding: 0;
 
   overflow: auto;
+  
+  > .aside-component {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+  }
 
-  @media (max-width: 600px) {
+  > .main-component {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+  }
+
+  @media (--mobile-like) {
     grid-template-columns: 1fr;
+    
+    > .aside-component {
+      display: none;
+    }
+
+    > .main-component {
+      grid-column: 1 / span 1;
+    }
   }
 }
 
@@ -84,8 +102,6 @@ html {
 
 
 .aside-component {
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
   background-color: #000;
 
   display: flex;
@@ -97,10 +113,6 @@ html {
   background-color: #142434;
 
   overflow: auto;
-
-  @media (--mobile-like) {
-    display: none;
-  }
 
   > .item {
     padding-inline: 0.6rem;
@@ -124,9 +136,6 @@ html {
 }
 
 .main-component {
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 1;
-
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
@@ -134,10 +143,6 @@ html {
   padding: 1rem;
 
   overflow: auto;
-
-  @media (--mobile-like) {
-    grid-column: 1 / span 1;
-  }
 
   > .title-border-wrapper {
     align-self: center;
