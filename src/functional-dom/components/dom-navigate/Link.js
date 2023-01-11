@@ -79,13 +79,13 @@ window.addEventListener('click', event => {
   // @ts-ignore
   const anchor = event.target.closest('a')
 
-  // Use the default behavior of the anchor
-  if (anchor[linkDefaultBehaviorSymbol]) {
+  // Check Symbol property to conditionally apply the logic
+  if (anchor == null || !anchor.hasOwnProperty(linkNavigateSymbol)) {
     return
   }
 
-  // Check Symbol property to conditionally apply the logic
-  if (anchor == null || !anchor.hasOwnProperty(linkNavigateSymbol)) {
+  // Use the default behavior of the anchor
+  if (anchor[linkDefaultBehaviorSymbol]) {
     return
   }
 
@@ -114,4 +114,4 @@ window.addEventListener('click', event => {
       }
   }
 
-}, {capture: true})
+})
