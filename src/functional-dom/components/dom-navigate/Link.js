@@ -40,6 +40,32 @@ export function Link(options, ...children) {
     anchor[linkMethodSymbol] = method
   }
 
+  // Propagate accessibility keyboard events for it to be used in inner components
+
+  anchor.addEventListener('keydown', event => {
+    if (event.code !== 'Enter') {
+      return
+    }
+
+    setTimeout(() => {
+      if (anchor.firstElementChild) {
+        anchor.firstElementChild.dispatchEvent(new CustomEvent('pointerdown', {bubbles: false}))
+      }
+    })
+  })
+
+  anchor.addEventListener('keyup', event => {
+    if (event.code !== 'Enter') {
+      return
+    }
+
+    setTimeout(() => {
+      if (anchor.firstElementChild) {
+        anchor.firstElementChild.dispatchEvent(new CustomEvent('pointerup', {bubbles: false}))
+      }
+    })
+  })
+
   return anchor
 }
 
