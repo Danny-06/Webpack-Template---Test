@@ -31,11 +31,7 @@ export function CustomButton(options, ...children) {
     let isSpacePressed = false
 
     host.addEventListener('keydown', event => {
-      if (event.code !== 'Space') {
-        return
-      }
-
-      if (isSpacePressed) {
+      if (event.code !== 'Space' || isSpacePressed) {
         return
       }
 
@@ -55,15 +51,11 @@ export function CustomButton(options, ...children) {
       host.dispatchEvent(new CustomEvent('pointerup'))
     })
 
-    let isEnterPressed = false
-
     // Add support for `Enter` key
     host.addEventListener('keydown', event => {
       if (event.code !== 'Enter') {
         return
       }
-
-      isEnterPressed = true
 
       host.dispatchEvent(new Event('click'))
       host.dispatchEvent(new CustomEvent('pointerdown'))
@@ -73,8 +65,6 @@ export function CustomButton(options, ...children) {
       if (event.code !== 'Enter') {
         return
       }
-    
-      isEnterPressed = false
 
       host.dispatchEvent(new CustomEvent('pointerup'))
     })
