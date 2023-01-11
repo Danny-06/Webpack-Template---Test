@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@layer all-unset;
+
 :root {
   box-sizing: border-box;
 }
@@ -20,9 +22,10 @@
 }
 
 
-/* Remove all styles */
-:where(a, button) {
-  all: unset;
+@layer all-unset {
+  a, button {
+    all: unset;
+  }
 }
 
 
