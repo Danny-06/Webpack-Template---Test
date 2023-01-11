@@ -113,5 +113,4 @@ window.addEventListener('click', event => {
         navigation.push(url, state)
       }
   }
-
 })
