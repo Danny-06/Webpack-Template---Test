@@ -24,6 +24,14 @@
   }
 }
 
+@define-mixin media $params {
+  @media $params {
+    &:is(&) {
+      @mixin-content;
+    }
+  }
+}
+
 $variable: --elise;
 
 
@@ -42,7 +50,7 @@ $variable: --elise;
 
   overflow: auto;
 
-  @media (max-width: 600px) {
+  @mixin media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
 }
@@ -68,7 +76,7 @@ html {
   & > body {
     background-color: #000;
 
-    @media (--custom-media) {
+    @mixin media (--custom-media) {
       background-color: #111;
     }
   }
@@ -90,14 +98,14 @@ html {
 
   overflow: auto;
 
-  @media (--mobile-like) {
+  @mixin media (--mobile-like) {
     display: none;
   }
 
   > .item {
     padding-inline: 0.6rem;
     padding-block: 0.6rem;
-  
+
     border: solid 2px #fff;
     background-color: #06f;
 
@@ -127,7 +135,7 @@ html {
 
   overflow: auto;
 
-  @media (--mobile-like) {
+  @mixin media (--mobile-like) {
     grid-column: 1 / span 1;
   }
 
