@@ -27,13 +27,35 @@ export function CustomButton(options, ...children) {
     host.tabIndex = 0
 
     // Add support for `Space` key
+
+    let isSpacePressed = false
+
+    host.addEventListener('keydown', event => {
+      if (event.code !== 'Space') {
+        return
+      }
+
+      if (isSpacePressed) {
+        return
+      }
+
+      isSpacePressed = true
+
+      host.dispatchEvent(new CustomEvent('pointerdown'))
+    })
+
     host.addEventListener('keyup', event => {
       if (event.code !== 'Space') {
         return
       }
 
+      isSpacePressed = false
+
       host.dispatchEvent(new Event('click'))
+      host.dispatchEvent(new CustomEvent('pointerup'))
     })
+
+    let isEnterPressed = false
 
     // Add support for `Enter` key
     host.addEventListener('keydown', event => {
@@ -41,7 +63,20 @@ export function CustomButton(options, ...children) {
         return
       }
 
+      isEnterPressed = true
+
       host.dispatchEvent(new Event('click'))
+      host.dispatchEvent(new CustomEvent('pointerdown'))
+    })
+
+    host.addEventListener('keyup', event => {
+      if (event.code !== 'Enter') {
+        return
+      }
+    
+      isEnterPressed = false
+
+      host.dispatchEvent(new CustomEvent('pointerup'))
     })
   }
 
@@ -50,8 +85,8 @@ export function CustomButton(options, ...children) {
   let isPressed = false
   let isEnd = false
 
-  host.addEventListener('pointerdown', event => {
-    if (event.button !== 0) {
+  host.addEventListener('pointerdown', /**@type {() => {}} */ event => {
+    if (event.button !== 0 && !(event instanceof CustomEvent)) {
       return
     }
 
@@ -66,8 +101,13 @@ export function CustomButton(options, ...children) {
 
     effect.classList.add('grow')
 
-    effect.style.setProperty('--y', `${event.offsetY}px`)
-    effect.style.setProperty('--x', `${event.offsetX}px`)
+    if (event instanceof CustomEvent) {
+      effect.style.setProperty('--x', `${host.offsetWidth / 2}px`)
+      effect.style.setProperty('--y', `${host.offsetHeight / 2}px`)
+    } else {
+      effect.style.setProperty('--x', `${event.offsetX}px`)
+      effect.style.setProperty('--y', `${event.offsetY}px`)
+    }
 
     const maxSize = Math.max(host.offsetWidth, host.offsetHeight)
 
