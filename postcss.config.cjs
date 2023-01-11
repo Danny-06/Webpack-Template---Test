@@ -6,6 +6,7 @@
 // https://github.com/postcss/postcss-simple-vars
 // https://github.com/nathanhood/postcss-variables
 // https://github.com/andyjansson/postcss-conditionals
+// https://github.com/csstools/postcss-custom-selectors
 
 // Fork of `postcss-simple-vars` to fix issue with `@each`
 // @ts-ignore
