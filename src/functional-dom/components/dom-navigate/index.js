@@ -43,17 +43,7 @@ export default function DOMNavigate(navigateRoutes) {
       let renderComponentFunc = null
 
       for (const route of sortedRoutes) {
-        if (route.path === pathname) {
-          if ('redirect' in route) {
-            navigation.replace(route.redirect)
-            return
-          }
-
-          renderComponentFunc = route.component
-          break
-        }
-
-        if (route.path === '*') {
+        if (route.path === pathname || route.path === '*') {
           if ('redirect' in route) {
             navigation.replace(route.redirect)
             return
