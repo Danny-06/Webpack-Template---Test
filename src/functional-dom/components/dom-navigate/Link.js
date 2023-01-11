@@ -4,9 +4,11 @@ import navigation from "./navigation.js"
 const linkNavigateSymbol = Symbol('link-navigate')
 const linkStateSymbol = Symbol('state')
 const linkMethodSymbol = Symbol('method')
+const linkDefaultBehaviorSymbol = Symbol('default-behavior')
 
 /**
  * @typedef LinkPropertiesDef
+ * @property {boolean} [defaultBehavior=false]
  * @property {string} [href] Value for the `href` attribute of the `HTMLAnchorElement`
  * @property {History['state']} [state] The state value to store in `History.state`
  * @property {'push' | 'replace'} [method] The navigation method to use. If unspecified it will be `push` for normal urls but for urls that contains a hash (`#`) `replace` will be used.
@@ -23,13 +25,15 @@ const linkMethodSymbol = Symbol('method')
  * @returns {HTMLAnchorElement}
  */
 export function Link(options, ...children) {
-  const {href, state, method} = options ?? {}
+  const {href, state, method, defaultBehavior} = options ?? {}
 
   const anchor = _.a(options, ...children)
 
   anchor[linkNavigateSymbol] = undefined
 
   anchor[linkStateSymbol] = state
+
+  anchor[linkDefaultBehaviorSymbol] = Boolean(defaultBehavior)
 
   if (typeof href === 'string') {
     anchor.href = href
@@ -71,10 +75,14 @@ export function Link(options, ...children) {
 
 
 window.addEventListener('click', event => {
-
   /**@type {HTMLAnchorElement}*/
   // @ts-ignore
   const anchor = event.target.closest('a')
+
+  // Use the default behavior of the anchor
+  if (anchor[linkDefaultBehaviorSymbol]) {
+    return
+  }
 
   // Check Symbol property to conditionally apply the logic
   if (anchor == null || !anchor.hasOwnProperty(linkNavigateSymbol)) {
