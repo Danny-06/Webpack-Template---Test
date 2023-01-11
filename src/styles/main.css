@@ -2,10 +2,31 @@
 
 
 @custom-media --custom-media (width <= 700px);
-
 @custom-media --mobile-like (width <= 600px);
 
+
+@custom-selector :--hover :hover, :focus-visible, :active;
+@custom-selector :--active :active:active;
+@custom-selector :--focus :focus-visible:focus-visible;
+
+
+@define-mixin :hover $selector {
+  $selector {
+    &:hover {
+      @media (hover: hover) {
+        @mixin-content;
+      }
+    }
+
+    &:is(:focus-visible, :active) {
+      @mixin-content;
+    }
+  }
+}
+
 $variable: --elise;
+
+
 
 :root {
   --amy: 1;
@@ -41,9 +62,7 @@ $list: (sonic, tails, knuckles);
   }
 }
 
-@custom-selector :--custom-selector html;
-
-:--custom-selector {
+html {
   background-color: #000;
 
   & > body {
@@ -84,6 +103,14 @@ $list: (sonic, tails, knuckles);
 
     &:last-child {
       margin-top: auto;
+    }
+
+    @mixin :hover & {
+      background-color: #09f;
+    }
+
+    &:--active {
+      background-color: #049;
     }
   }
 }
