@@ -6,6 +6,10 @@
 @custom-media --mobile-like (width <= 600px);
 
 
+:root {
+  background-color: #000;
+}
+
 [data-id="app-content"] {
   display: grid;
   grid-template-columns: 300px 1fr;
