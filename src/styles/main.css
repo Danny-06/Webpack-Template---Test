@@ -19,12 +19,12 @@
 
   overflow: auto;
 
-  > .aside-component {
+  & > .aside-component {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
   }
 
-  > .main-component {
+  & > .main-component {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
   }
@@ -32,11 +32,11 @@
   @media (--mobile-like) {
     grid-template-columns: 1fr;
 
-    > .aside-component {
+    & > .aside-component {
       display: none;
     }
 
-    > .main-component {
+    & > .main-component {
       grid-column: 1 / span 1;
     }
   }
@@ -55,7 +55,7 @@
 
   overflow: auto;
 
-  > .item {
+  & > .item {
     padding-inline: 0.6rem;
     padding-block: 0.6rem;
 
@@ -85,7 +85,7 @@
 
   overflow: auto;
 
-  > .title-border-wrapper {
+  & > .title-border-wrapper {
     align-self: center;
 
     padding-bottom: 1rem;
@@ -97,7 +97,7 @@
   max-width: 500px;
   --vertical-length: 3rem;
 
-  > .title {
+  & > .title {
     padding-block: 1rem;
     padding-inline: 0.5rem;
 
@@ -116,7 +116,7 @@
   align-items: center;
   column-gap: 1rem;
 
-  > .card {
+  & > .card {
     max-width: 190px;
 
     flex-shrink: 1;
@@ -134,7 +134,7 @@
   border-radius: 0.6rem;
   background-color: #06f;
 
-  > .title {
+  & > .title {
     font-size: 1.2rem;
     font-weight: bold;
   }
