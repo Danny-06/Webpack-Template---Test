@@ -1,0 +1,21 @@
+@define-mixin :hover $selector {
+  $selector {
+    &:hover {
+      @media (hover: hover) {
+        @mixin-content;
+      }
+    }
+
+    &:is(:focus-visible, :active) {
+      @mixin-content;
+    }
+  }
+}
+
+@define-mixin media $params {
+  @media $params {
+    &:is(&) {
+      @mixin-content;
+    }
+  }
+}

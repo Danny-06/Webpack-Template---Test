@@ -8,6 +8,8 @@
 // https://github.com/csstools/postcss-custom-selectors
 // https://github.com/postcss/postcss-scss
 // https://github.com/mummybot/postcss-strip-inline-comments
+// https://github.com/postcss/postcss-import
+
 
 // Fork of `postcss-simple-vars` to fix issue with `@each`
 // @ts-ignore
@@ -17,6 +19,7 @@ module.exports = {
   syntax: 'postcss-scss',
   plugins: [
     'postcss-strip-inline-comments',
+    'postcss-import',
     simpleVariables,
     'postcss-conditionals',
     'postcss-mixins',

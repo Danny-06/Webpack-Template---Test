@@ -1,45 +1,10 @@
 @charset "UTF-8";
 
+@import url('./mixins.css');
+@import url('./custom-selectors.css');
 
-@custom-media --custom-media (width <= 700px);
 @custom-media --mobile-like (width <= 600px);
 
-
-@custom-selector :--hover :hover, :focus-visible, :active;
-@custom-selector :--active :active:active:active;
-@custom-selector :--focus :focus-visible:focus-visible;
-
-
-@define-mixin :hover $selector {
-  $selector {
-    &:hover {
-      @media (hover: hover) {
-        @mixin-content;
-      }
-    }
-
-    &:is(:focus-visible, :active) {
-      @mixin-content;
-    }
-  }
-}
-
-@define-mixin media $params {
-  @media $params {
-    &:is(&) {
-      @mixin-content;
-    }
-  }
-}
-
-$variable: --elise;
-
-
-
-:root {
-  --amy: 1;
-  --sonic: "$variable";
-}
 
 [data-id="app-content"] {
   display: grid;
@@ -49,7 +14,7 @@ $variable: --elise;
   padding: 0;
 
   overflow: auto;
-  
+
   > .aside-component {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
@@ -62,7 +27,7 @@ $variable: --elise;
 
   @media (--mobile-like) {
     grid-template-columns: 1fr;
-    
+
     > .aside-component {
       display: none;
     }
@@ -72,34 +37,6 @@ $variable: --elise;
     }
   }
 }
-
-$list: (sonic, tails, knuckles);
-
-@each $value, $i in $list {
-  html {
-    --each: $(value)-px;
-    --i: $(i);
-  }
-}
-
-@for $i from 1 to 5 {
-  html {
-    --for: $(i)px;
-  }
-}
-
-html {
-  background-color: #000;
-
-  & > body {
-    background-color: #000;
-
-    @media (--custom-media) {
-      background-color: #111;
-    }
-  }
-}
-
 
 .aside-component {
   background-color: #000;
@@ -159,7 +96,7 @@ html {
   > .title {
     padding-block: 1rem;
     padding-inline: 0.5rem;
-  
+
     text-align: center;
   }
 }

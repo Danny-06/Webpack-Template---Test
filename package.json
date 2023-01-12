@@ -25,6 +25,7 @@
     "postcss-custom-selectors": "^7.0.0",
     "postcss-each": "^1.1.0",
     "postcss-for": "^2.1.1",
+    "postcss-import": "^15.1.0",
     "postcss-loader": "^7.0.2",
     "postcss-media-minmax": "^5.0.0",
     "postcss-mixins": "^9.0.4",

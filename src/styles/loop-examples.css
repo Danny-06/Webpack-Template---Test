@@ -1,0 +1,14 @@
+$list: (sonic, tails, knuckles);
+
+@each $value, $i in $list {
+  html {
+    --each: $(value)-px;
+    --i: $(i);
+  }
+}
+
+@for $i from 1 to 5 {
+  html {
+    --for: $(i)px;
+  }
+}

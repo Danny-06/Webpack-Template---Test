@@ -1,0 +1,3 @@
+@custom-selector :--hover :hover, :focus-visible, :active;
+@custom-selector :--active :active:active:active;
+@custom-selector :--focus :focus-visible:focus-visible;
